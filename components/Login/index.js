@@ -15,9 +15,9 @@ class Login extends Component {
     password: ""
   };
 
-  // componentDidMount() {
-  //   if (authStore.user) this.props.navigation.navigate("LolScreen");
-  // }
+  componentDidMount() {
+    if (authStore.user) this.props.navigation.navigate("List");
+  }
 
   render() {
     return (
