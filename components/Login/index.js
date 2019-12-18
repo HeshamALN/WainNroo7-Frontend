@@ -21,36 +21,34 @@ class Login extends Component {
 
   render() {
     return (
-      <>
-        <View style={styles.authContainer}>
-          <Text style={styles.authTitle}>Login</Text>
-          <TextInput
-            style={styles.authTextInput}
-            placeholder="Username"
-            onChangeText={username => this.setState({ username })}
-            placeholderTextColor="#A6AEC1"
-          />
-          <TextInput
-            style={styles.authTextInput}
-            placeholder="Password"
-            placeholderTextColor="#A6AEC1"
-            onChangeText={password => this.setState({ password })}
-            secureTextEntry={true}
-          />
-          <TouchableOpacity
-            style={styles.authButton}
-            onPress={() => authStore.login(this.state, this.props.navigation)}
-          >
-            <Text style={styles.authButtonText}>Log in</Text>
-          </TouchableOpacity>
-          <Text
-            style={styles.authOther}
-            onPress={() => this.props.navigation.navigate("Signup")}
-          >
-            Click here to register!
-          </Text>
-        </View>
-      </>
+      <View style={styles.authContainer}>
+        <Text style={styles.authTitle}>Login</Text>
+        <TextInput
+          style={styles.authTextInput}
+          placeholder="Username"
+          onChangeText={username => this.setState({ username })}
+          placeholderTextColor="#A6AEC1"
+        />
+        <TextInput
+          style={styles.authTextInput}
+          placeholder="Password"
+          placeholderTextColor="#A6AEC1"
+          onChangeText={password => this.setState({ password })}
+          secureTextEntry={true}
+        />
+        <TouchableOpacity
+          style={styles.authButton}
+          onPress={() => authStore.login(this.state, this.props.navigation)}
+        >
+          <Text style={styles.authButtonText}>Log in</Text>
+        </TouchableOpacity>
+        <Text
+          style={styles.authOther}
+          onPress={() => this.props.navigation.navigate("Signup")}
+        >
+          Click here to register!
+        </Text>
+      </View>
     );
   }
 }
