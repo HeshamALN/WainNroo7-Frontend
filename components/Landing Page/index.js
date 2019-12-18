@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Text,
   View,
@@ -10,41 +10,33 @@ import {
 } from "react-native";
 // import Logo from "./assets/chef.png";
 
-import { StackNavigator } from "react-navigation";
+import FirstQuestion from "../FirstQuestion/index";
+class LandingPageScreen extends Component {
+  // componentDidMount() {
+  //   LandingStore.this.props.navigation.navigate("FirstQuestion");
+  // }
 
-export default class LandingPageScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <Text style={styles.h1}>Wain Nroo7</Text>
-          <Text style={styles.h2}>Welcome to wain nroo7 game.. lol</Text>
-        </View>
-        <View style={styles.middleContainer}>
-          <Image source={Logo} style={styles.image} />
-        </View>
-        <ProgressViewIOS number={1} />
-        <View style={styles.bottomContainer}>
-          <View style={styles.buttonContainer}>
-            <Button
-              title="LET'S START"
-              style={styles.button}
-              onPress={() => this.onPress()} //take him to register + question page
-              color="#fff"
-            />
-
-            <Button
-              title="already have an account?"
-              style={styles.button}
-              onPress={() => navigate("Login")} //take him to login page
-              color="#fff"
-            />
-          </View>
+      <View>
+        <View>
+          <Text style={styles.h1}>Wain Nroo7 yal 6ayb?</Text>
+          <FirstQuestion />
+          <Button
+            title="already have an account?"
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate("Login")} //take him to login page
+            color=""
+          />
         </View>
       </View>
     );
   }
 }
+LandingPageScreen.navigationOptions = {
+  title: "le landing page"
+};
+export default LandingPageScreen;
 
 const styles = StyleSheet.create({
   topContainer: {
