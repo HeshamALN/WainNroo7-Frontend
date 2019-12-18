@@ -11,14 +11,7 @@ const HomeStack = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      title: "وين نروح !!!",
-      headerTintColor: "black",
-      headerStyle: {
-        backgroundColor: "#white"
-      },
-      headerTitleStyle: {
-        fontWeight: "bold"
-      }
+      header: null
     }
   }
 );

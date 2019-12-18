@@ -20,7 +20,7 @@ class LevelsStore {
       img: diff,
       score: "100",
       coin: fls,
-      location: "@Location I"
+      place: ""
     },
     {
       id: "2",
@@ -30,7 +30,7 @@ class LevelsStore {
       img: riddles,
       score: "150",
       coin: fls,
-      location: "@Location I"
+      place: ""
     },
     {
       id: "3",
@@ -40,15 +40,15 @@ class LevelsStore {
       img: trivia,
       score: "200",
       coin: fls,
-      location: "@Location I"
+      place: ""
     }
   ];
 
   fetchAllLevels = async () => {
     try {
       const res = await instance.get("/api/");
-      const Levels = res.data;
-      this.Levels = Levels;
+      const levels = res.data;
+      this.levels = levels;
       this.loading = false;
     } catch (err) {
       console.error(err);
@@ -57,7 +57,7 @@ class LevelsStore {
 }
 
 decorate(LevelsStore, {
-  Levels: observable,
+  levels: observable,
   loading: observable
 });
 

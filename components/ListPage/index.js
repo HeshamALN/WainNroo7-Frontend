@@ -1,49 +1,23 @@
 import React, { Component } from "react";
-import { Container, Content, Button, Text } from "native-base";
+import { ImageBackground, View } from "react-native";
+import styles from "./styles";
+import listStore from "../../stores/listStore";
+import Pin from "./Pins";
 
 export default class List extends Component {
   render() {
-    const handlePress = () => this.props.navigation.navigate("Levels");
+    const Listofplaces = listStore.places.map(place => (
+      <Pin place={place} key={place.id} />
+    ));
     return (
-      <Container>
-        <Content>
-          <Button
-            transparent
-            onPress={handlePress}
-            style={{ marginLeft: 130, marginBottom: 20, marginTop: 30 }}
-          >
-            <Text>Location I</Text>
-          </Button>
-          <Button
-            transparent
-            onPress={handlePress}
-            style={{ marginLeft: 130, marginBottom: 20 }}
-          >
-            <Text>Location II</Text>
-          </Button>
-          <Button
-            transparent
-            onPress={handlePress}
-            style={{ marginLeft: 130, marginBottom: 20 }}
-          >
-            <Text>Location III</Text>
-          </Button>
-          <Button
-            transparent
-            onPress={handlePress}
-            style={{ marginLeft: 130, marginBottom: 20 }}
-          >
-            <Text>Location IV</Text>
-          </Button>
-          <Button
-            transparent
-            onPress={handlePress}
-            style={{ marginLeft: 130, marginBottom: 20 }}
-          >
-            <Text>Location V</Text>
-          </Button>
-        </Content>
-      </Container>
+      <ImageBackground
+        source={require("../../assets/images/KW.png")}
+        style={styles.container}
+      >
+        <View style={styles.overlayContainer}>
+          <View style={styles.topStyling}>{Listofplaces}</View>
+        </View>
+      </ImageBackground>
     );
   }
 }
