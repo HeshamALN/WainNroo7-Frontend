@@ -1,16 +1,8 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  Button,
-  Image,
-  ProgressViewIOS,
-  StyleSheet,
-  Logo
-} from "react-native";
+import { Text, View, Button, StyleSheet } from "react-native";
 // import Logo from "./assets/chef.png";
-
 import FirstQuestion from "../FirstQuestion/index";
+
 class LandingPageScreen extends Component {
   // componentDidMount() {
   //   LandingStore.this.props.navigation.navigate("FirstQuestion");
@@ -20,8 +12,8 @@ class LandingPageScreen extends Component {
     return (
       <View>
         <View>
-          <Text style={styles.h1}>Wain Nroo7 yal 6ayb?</Text>
-          <FirstQuestion />
+          <Text style={styles.h1}>Wain Nroo7?</Text>
+          <FirstQuestion navigation={this.props.navigation} />
           <Button
             title="already have an account?"
             style={styles.button}

@@ -2,9 +2,14 @@ import { decorate, observable } from "mobx";
 import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
 import { instance } from "./instance";
+import HomeStack from "./../navigation/HomeStack";
 
 class AuthStore {
-  user = null;
+  // user = null;
+  user = {
+    username: "admin",
+    password: "admin"
+  };
 
   setUser = async token => {
     if (token) {

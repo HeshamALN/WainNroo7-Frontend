@@ -15,7 +15,9 @@ class Signup extends Component {
     password: "",
     first_name: "",
     last_name: "",
-    email: ""
+    email: "",
+    gender: "",
+    birth_date: ""
   };
 
   componentDidMount() {
@@ -56,6 +58,18 @@ class Signup extends Component {
           placeholder="last_name"
           placeholderTextColor="#A6AEC1"
           onChangeText={last_name => this.setState({ last_name })}
+        />
+        <TextInput
+          style={styles.authTextInput}
+          placeholder="gender"
+          placeholderTextColor="#A6AEC1"
+          onChangeText={gender => this.setState({ gender })}
+        />
+        <TextInput
+          style={styles.authTextInput}
+          placeholder="birth_date"
+          placeholderTextColor="#A6AEC1"
+          onChangeText={birth_date => this.setState({ birth_date })}
         />
 
         <TouchableOpacity
