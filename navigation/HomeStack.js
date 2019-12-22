@@ -8,11 +8,13 @@ import Signup from "../components/Signup/index";
 import LandingPageScreen from "../components/Landing Page/index";
 import FirstQuestion from "../components/FirstQuestion/index";
 import ProfileScreen from "../components/Profile/index";
+import Trivia from "../components/Trivia";
+
 
 const HomeStack = createStackNavigator(
   {
     ProfileScreen: ProfileScreen,
-
+    Trivia: Trivia,
     LandingPageScreen: LandingPageScreen,
     FirstQuestion: FirstQuestion,
     Login: Login,
