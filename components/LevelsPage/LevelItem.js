@@ -2,20 +2,11 @@ import React from "react";
 import { withNavigation } from "react-navigation";
 
 // NativeBase Components
-import {
-  Card,
-  CardItem,
-  Text,
-  Button,
-  Left,
-  Body,
-  Thumbnail
-} from "native-base";
-import { Image, ImageBackground, View } from "react-native";
-// Style
-// import styles from "./styles";
+import { Card, CardItem, Text, Left, Body, Thumbnail } from "native-base";
+import { Image, ImageBackground, View, TouchableOpacity } from "react-native";
 
-const LevelItem = ({ level, navigation }) => {
+const LevelItem = ({ level, navigation, thePlace }) => {
+  // const handlePress = () => navigation.navigate("Game");
   return (
     <ImageBackground source={level.lockimg} style={{ width: null, flex: 1 }}>
       <View
@@ -35,13 +26,15 @@ const LevelItem = ({ level, navigation }) => {
           <Left>
             <Body>
               <Text>{level.name}</Text>
-              <Text note>{level.location}</Text>
+              <Text note>{thePlace.name}@</Text>
             </Body>
           </Left>
         </CardItem>
         <CardItem>
           <Body>
-            <Image source={level.img} style={{ height: 230, width: 350 }} />
+            <TouchableOpacity>
+              <Image source={level.img} style={{ height: 230, width: 350 }} />
+            </TouchableOpacity>
             <Text>solve me to open the next level</Text>
           </Body>
         </CardItem>

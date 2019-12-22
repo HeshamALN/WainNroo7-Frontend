@@ -5,17 +5,43 @@ import {
   TextInput,
   TouchableHighlight,
   View,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from "react-native";
+
 class FirstQuestion extends Component {
   state = {
-    modalVisible: false
+    modalVisible: false,
+    answer: "",
+    correctAnswer: 2
   };
   toggleModal(visible) {
     this.setState({ modalVisible: visible });
   }
+
+  handleQuestion = () => {
+    const answer = this.state.answer;
+    const correctAnswer = this.state.correctAnswer;
+    if (answer != correctAnswer) alert("Wrong Answer.");
+    else {
+      Alert.alert(
+        "Congrats!",
+        "Your answer is correct!",
+        [
+          {
+            text: "Sign up",
+            onPress: () => {
+              this.toggleModal(false);
+              // this.props.navigation.navigate("Signup");
+              this.props.navigation.navigate("HomeStack");
+            }
+          }
+        ],
+        { cancelable: false }
+      );
+    }
+  };
   render() {
-    const [value, onChangeText] = "Useless Placeholder";
     return (
       <View style={styles.container}>
         <Modal
@@ -27,19 +53,23 @@ class FirstQuestion extends Component {
           }}
         >
           <View style={styles.modal}>
-            <Text style={styles.text}>heheheh</Text>
+            <Text style={styles.text}> 1+1=? </Text>
 
             <TextInput
               style={{
                 height: 20,
                 width: 200,
-                borderColor: "gray",
-                borderWidth: 1
+                borderColor: "black",
+                borderWidth: 1,
+                color: "black"
               }}
-              onChangeText={text => onChangeText(text)}
-              value={value}
+              onChangeText={text => this.setState({ answer: text })}
+              value={this.state.answer}
             />
 
+            <TouchableHighlight onPress={this.handleQuestion}>
+              <Text style={styles.text}>Answer</Text>
+            </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
                 this.toggleModal(!this.state.modalVisible);

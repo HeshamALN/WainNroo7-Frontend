@@ -2,9 +2,14 @@ import { decorate, observable } from "mobx";
 import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
 import { instance } from "./instance";
+import HomeStack from "./../navigation/HomeStack";
 
 class AuthStore {
-  user = null;
+  // user = null;
+  user = {
+    username: "",
+    password: ""
+  };
 
   setUser = async token => {
     if (token) {
@@ -22,7 +27,7 @@ class AuthStore {
 
   login = async (userData, navigation) => {
     try {
-      const res = await instance.post("/api/login/", userData);
+      const res = await instance.post("/login/", userData);
       const user = res.data;
       await this.setUser(user.access);
       navigation.navigate("HomeStack");
