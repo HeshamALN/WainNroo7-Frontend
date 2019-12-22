@@ -118,8 +118,8 @@ class ProfileScreen extends Component {
                     <Block style={styles.divider} />
                   </Block>
                   <Text bold size={15} color="#32325D">
-                    {/* Date of birth: {ProfileStore.profile.birth_day} */}
-                    Age: {getAge}
+                    Date of birth: {ProfileStore.profile.birth_day}
+                    {/* Age: {getAge} */}
                   </Text>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                     <Block style={styles.divider} />
