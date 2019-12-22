@@ -1,3 +1,4 @@
+import differenceInDays from "date-fns/difference_in_days";
 import { decorate, observable, computed } from "mobx";
 import { instance } from "./instance";
 
@@ -6,10 +7,23 @@ class ProfileStore {
 
   profile = [];
 
+  age = null;
+
   fetchProfile = async () => {
     try {
-      // const res = await instance.get("profile URL");
+      const res = await instance.get("/profile/");
       this.profile = res.data;
+      this.loading = false;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  getAge = async () => {
+    try {
+      const res = await instance.get("/profile/");
+      birthDate = res.data.birth_date;
+      Age = Math.floor(new Date() - new Date(birthDate).getTime());
       this.loading = false;
     } catch (err) {
       console.error(err);
