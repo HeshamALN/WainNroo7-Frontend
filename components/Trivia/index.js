@@ -21,7 +21,8 @@ import data from "../../stores/triviadummy";
 class LevelsList extends Component {
   state = {
     choice: 0,
-    seconds: 10
+    seconds: 10,
+    totalScore: 0
   };
 
   dec = () => {
@@ -30,7 +31,7 @@ class LevelsList extends Component {
   };
 
   componentDidMount() {
-    this.setState({ seconds: 10 });
+    this.setState({ choice: 0, seconds: 10 });
     this.interval = setInterval(this.dec, 1000);
   }
 
@@ -54,24 +55,27 @@ class LevelsList extends Component {
     }
   }
 
-  handleOnPress = () => {
-    if (this.state.choice < 3) this.setState({ choice: this.state.choice + 1 });
-    else this.props.navigation.navigate("Levels");
+  handleOnPress = async score => {
+    if (this.state.choice < 3) {
+      await this.setState({ choice: this.state.choice + 1 });
+      this.setState({ totalScore: this.state.totalScore + score });
+    } else this.props.navigation.navigate("Levels");
   };
 
   render() {
     let choicee = this.state.choice;
-    if (this.state.choice < 3)
+    if (this.state.choice < 3) {
       return (
         <Container>
           <Content>
             <>
               <H1>{this.state.seconds}</H1>
+              <Text> {`Score : ${this.state.totalScore}`}</Text>
               <Text>{data[0].questions[choicee].Question} </Text>
               <List>
                 {data[0].questions[0].Answers.map(ans => (
                   <ListItem>
-                    <Button onPress={this.handleOnPress}>
+                    <Button onPress={() => this.handleOnPress(ans.score)}>
                       <Text> {`${this.state.choice} ${ans.answer}`}</Text>
                     </Button>
                   </ListItem>
@@ -81,16 +85,18 @@ class LevelsList extends Component {
           </Content>
         </Container>
       );
-    else
+    } else {
       return (
         <Container>
           <Content>
+            <Text> {`Ur Total Score : ${this.state.totalScore}`}</Text>
             <Button onPress={this.handleOnPress}>
               <Text> {`${this.state.choice} Exit`}</Text>
             </Button>
           </Content>
         </Container>
       );
+    }
   }
 }
 
