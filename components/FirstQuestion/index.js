@@ -32,7 +32,8 @@ class FirstQuestion extends Component {
             text: "Sign up",
             onPress: () => {
               this.toggleModal(false);
-              this.props.navigation.navigate("Signup");
+              // this.props.navigation.navigate("Signup");
+              this.props.navigation.navigate("HomeStack");
             }
           }
         ],
