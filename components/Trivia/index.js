@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import { observer } from "mobx-react";
 // NativeBase Components
 import { Alert } from "react-native";
@@ -106,3 +107,25 @@ class LevelsList extends Component {
 // };
 
 export default observer(LevelsList);
+=======
+import { Container, Content, Button, Text } from "native-base";
+
+//stores
+import data from "../../stores/triviadummy";
+
+class Trivia extends Component {
+  render() {
+    let game = data.questions.forEach(obj => {
+      <Text>obj.question</Text>;
+    });
+    const handlePress = () => this.props.navigation.navigate("Levels");
+    return (
+      <Container>
+        <Content>{game}</Content>
+      </Container>
+    );
+  }
+}
+
+export default Trivia;
+>>>>>>> 2be7800e3b2c1c0c2a7513af19e829ef82058c2b
