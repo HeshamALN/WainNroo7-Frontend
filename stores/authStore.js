@@ -2,7 +2,6 @@ import { decorate, observable } from "mobx";
 import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
 import { instance } from "./instance";
-import HomeStack from "./../navigation/HomeStack";
 
 class AuthStore {
   // user = null;
@@ -30,7 +29,7 @@ class AuthStore {
       const res = await instance.post("/login/", userData);
       const user = res.data;
       await this.setUser(user.access);
-      navigation.navigate("HomeStack");
+      navigation.navigate("List");
     } catch (err) {
       // console.error(err);
       alert("invalid");
@@ -39,9 +38,9 @@ class AuthStore {
 
   signup = async (userData, navigation) => {
     try {
-      const res = await instance.post("/api/register/", userData);
+      const res = await instance.post("/register/", userData);
       this.login(userData, navigation);
-      navigation.navigate("HomeStack");
+      navigation.navigate("List");
     } catch (err) {
       // console.error(err);
       alert("invalid");

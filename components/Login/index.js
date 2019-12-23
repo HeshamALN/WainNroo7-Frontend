@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  authContainer: {
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   middleContainer: {
     flex: 3,
     justifyContent: "flex-start",
