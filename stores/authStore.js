@@ -7,8 +7,8 @@ import HomeStack from "./../navigation/HomeStack";
 class AuthStore {
   // user = null;
   user = {
-    username: "admin",
-    password: "admin"
+    username: "",
+    password: ""
   };
 
   setUser = async token => {
@@ -27,7 +27,7 @@ class AuthStore {
 
   login = async (userData, navigation) => {
     try {
-      const res = await instance.post("/api/login/", userData);
+      const res = await instance.post("/login/", userData);
       const user = res.data;
       await this.setUser(user.access);
       navigation.navigate("HomeStack");
