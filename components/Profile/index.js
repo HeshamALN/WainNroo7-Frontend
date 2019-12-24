@@ -5,7 +5,14 @@ import {
   Dimensions,
   ScrollView,
   Image,
-  Platform
+  Header,
+  Left,
+  Button,
+  Icon,
+  Container,
+  Body,
+  Title,
+  Right
 } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import Logout from "../Logout/index";
@@ -13,11 +20,8 @@ import Logout from "../Logout/index";
 //stores
 import authStore from "../../stores/authStore";
 import ProfileStore from "../../stores/profileStore";
-import { getTime } from "date-fns";
 
 const { width, height } = Dimensions.get("screen");
-
-const thumbMeasure = (width - 48 - 32) / 3;
 
 // const scoreBoard = [
 //   {

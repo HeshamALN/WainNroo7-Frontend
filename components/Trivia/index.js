@@ -100,9 +100,5 @@ class LevelsList extends Component {
   }
 }
 
-// LevelsList.navigationOptions = {
-//   title: "وين نروح؟؟",
-//   headerRight:
-// };
 
 export default observer(LevelsList);

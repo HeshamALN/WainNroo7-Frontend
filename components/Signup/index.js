@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 
 // Styling Components
-import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+import {
+  TextInput,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Picker,
+  DatePicker
+} from "react-native";
 
 import { Text } from "native-base";
 // import styles from "./styles";
@@ -16,8 +23,12 @@ class Signup extends Component {
     first_name: "",
     last_name: "",
     email: "",
-    gender: "",
+    gender: "Male",
     birth_date: ""
+  };
+
+  updateGender = gender => {
+    this.setState({ gender: gender });
   };
 
   componentDidMount() {
@@ -59,24 +70,46 @@ class Signup extends Component {
           placeholderTextColor="#A6AEC1"
           onChangeText={last_name => this.setState({ last_name })}
         />
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="gender"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={gender => this.setState({ gender })}
-        />
+
+        <Picker
+          note
+          mode="dropdown"
+          style={{ width: 100 }}
+          selectedValue={this.state.gender}
+          onValueChange={this.updateGender.bind(this)}
+        >
+          <Picker.Item label="Male" value="Male" />
+          <Picker.Item label="Female" value="Female" />
+        </Picker>
+
         <TextInput
           style={styles.authTextInput}
           placeholder="birth_date"
           placeholderTextColor="#A6AEC1"
           onChangeText={birth_date => this.setState({ birth_date })}
         />
+        {/* 
+        <DatePicker
+          minimumDate={new Date(1900, 1, 1)}
+          maximumDate={new Date(2019, 12, 31)}
+          locale={"en"}
+          timeZoneOffsetInMinutes={undefined}
+          modalTransparent={false}
+          animationType={"fade"}
+          androidMode={"default"}
+          placeHolderText="Select date"
+          textStyle={{ color: "green" }}
+          placeHolderTextStyle={{ color: "#d3d3d3" }}
+          onDateChange={birth_date => this.setState({ birth_date })}
+          disabled={false}
+        />
+        <Text>Date: {this.state.birth_date}</Text> */}
 
         <TouchableOpacity
           style={styles.authButton}
-          onPress={() => authStore.login(this.state, this.props.navigation)}
+          onPress={() => authStore.signup(this.state, this.props.navigation)}
         >
-          <Text style={styles.authButtonText}>Log in</Text>
+          <Text style={styles.authButtonText}>Sign up</Text>
         </TouchableOpacity>
         <Text
           style={styles.authOther}
@@ -97,6 +130,11 @@ export default Signup;
 
 const styles = StyleSheet.create({
   topContainer: {
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  authContainer: {
     flex: 2,
     justifyContent: "center",
     alignItems: "center"
