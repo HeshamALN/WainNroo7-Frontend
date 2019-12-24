@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
-  Picker
+  Picker,
+  DatePicker
 } from "react-native";
 
 import { Text } from "native-base";
@@ -87,6 +88,22 @@ class Signup extends Component {
           placeholderTextColor="#A6AEC1"
           onChangeText={birth_date => this.setState({ birth_date })}
         />
+        {/* 
+        <DatePicker
+          minimumDate={new Date(1900, 1, 1)}
+          maximumDate={new Date(2019, 12, 31)}
+          locale={"en"}
+          timeZoneOffsetInMinutes={undefined}
+          modalTransparent={false}
+          animationType={"fade"}
+          androidMode={"default"}
+          placeHolderText="Select date"
+          textStyle={{ color: "green" }}
+          placeHolderTextStyle={{ color: "#d3d3d3" }}
+          onDateChange={birth_date => this.setState({ birth_date })}
+          disabled={false}
+        />
+        <Text>Date: {this.state.birth_date}</Text> */}
 
         <TouchableOpacity
           style={styles.authButton}

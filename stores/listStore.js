@@ -12,7 +12,7 @@ class ListStore {
       ycoordinate: 360,
       trivia: "1",
       difference: "1",
-      riddles: "100"
+      riddles: "1"
     },
     {
       id: "2",
