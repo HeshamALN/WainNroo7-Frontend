@@ -13,7 +13,6 @@ import {
 } from "native-base";
 
 //stores
-import levelsStore from "../../stores/levelsStore";
 import data from "../../stores/triviadummy";
 
 //components
@@ -99,6 +98,5 @@ class LevelsList extends Component {
     }
   }
 }
-
 
 export default observer(LevelsList);

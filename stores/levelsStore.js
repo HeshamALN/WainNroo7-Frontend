@@ -1,14 +1,13 @@
-import { decorate, observable } from "mobx";
-import { instance } from "./instance";
-
+// NOTE:
+// THIS STORE WILL BE DELETED ONCE THE APP DESIGN IS FINISHED
+// ************************************************************************************
+// ************************************************************************************
 // dummy images
 import riddles from "../assets/images/riddles.jpg";
 import diff from "../assets/images/diff.jpg";
 import trivia from "../assets/images/trivia.jpeg";
 
 class LevelsStore {
-  loading = true;
-
   levels = [
     {
       id: "1",
@@ -32,24 +31,7 @@ class LevelsStore {
       score: "200"
     }
   ];
-
-  fetchAllLevels = async () => {
-    try {
-      const res = await instance.get("/api/");
-      const levels = res.data;
-      this.levels = levels;
-      this.loading = false;
-    } catch (err) {
-      console.error(err);
-    }
-  };
 }
 
-decorate(LevelsStore, {
-  levels: observable,
-  loading: observable
-});
-
 const levelsStore = new LevelsStore();
-// levelsStore.fetchAllLevels();
 export default levelsStore;

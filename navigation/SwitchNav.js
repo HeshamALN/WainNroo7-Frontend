@@ -5,7 +5,7 @@ import LandingPageScreen from "../components/Landing Page/index";
 import Login from "../components/Login/index";
 import Signup from "../components/Signup/index";
 import FirstQuestion from "../components/FirstQuestion/index";
-
+import HomeStack from "./HomeStack";
 import DrawerNav from "./DrawerNav";
 
 const SwitchNav = createSwitchNavigator(
@@ -14,7 +14,8 @@ const SwitchNav = createSwitchNavigator(
     FirstQuestion: FirstQuestion,
     Login: Login,
     Signup: Signup,
-    DrawerNav: DrawerNav
+    DrawerNav: DrawerNav,
+    HomeStack: HomeStack
   },
 
   {
