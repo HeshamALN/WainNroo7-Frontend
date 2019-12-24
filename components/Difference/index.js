@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { ImageBackground, Alert, Text, Image } from "react-native";
 import CircleItem from "./CircleItem";
-import differenceStore from "../../stores/differenceStore";
 
 class Difference extends Component {
   render() {
