@@ -11,7 +11,7 @@ class LandingPageScreen extends Component {
   render() {
     return (
       <View>
-        <View>
+        <View style={styles.topContainer}>
           <Text style={styles.h1}>Wain Nroo7?</Text>
           <FirstQuestion navigation={this.props.navigation} />
           <Button
@@ -32,9 +32,7 @@ export default LandingPageScreen;
 
 const styles = StyleSheet.create({
   topContainer: {
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center"
+    top: 60
   },
   middleContainer: {
     flex: 3,
