@@ -3,16 +3,16 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 //Components
 import ProfileScreen from "../components/Profile";
 import ListPage from "../components/ListPage";
-// import Logout from "../components/Logout";
+import SideMenu from "../components/CustomDrawer";
 
 const DrawerNav = createDrawerNavigator(
   {
-    ProfileScreen: ProfileScreen,
+    Profile: ProfileScreen,
     List: ListPage
   },
   {
-    defaultNavigationOptions: {}
+    contentComponent: SideMenu,
+    drawerWidth: 200
   }
 );
-
 export default DrawerNav;
