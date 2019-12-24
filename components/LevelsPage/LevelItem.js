@@ -8,8 +8,9 @@ import { Image, ImageBackground, TouchableOpacity } from "react-native";
 const LevelItem = ({ level, navigation, thePlace }) => {
   const handlePress = () => {
     console.log(level.id);
-    if (level.id == 1)
+    if (level.id == 1) {
       navigation.navigate("Difference", { DifferenceID: thePlace.difference });
+    }
   };
   return (
     <ImageBackground

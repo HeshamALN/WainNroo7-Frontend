@@ -14,6 +14,7 @@ class LevelsList extends Component {
     const placeID = this.props.navigation.getParam("placeID");
     const thePlace = listStore.places.find(thePlace => placeID === thePlace.id);
     // console.log(placeID);
+
     const Listoflevels = levelsStore.levels.map(level => (
       <LevelItem level={level} key={level.id} thePlace={thePlace} />
     ));
