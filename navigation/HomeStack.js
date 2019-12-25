@@ -10,6 +10,7 @@ import ListPage from "../components/ListPage";
 import LevelsPage from "../components/LevelsPage";
 import DifferencePage from "../components/Difference";
 // import Trivia from "../components/Trivia";
+import RiddlePage from "../components/Riddle";
 
 const HomeStack = createStackNavigator(
   {
@@ -21,7 +22,8 @@ const HomeStack = createStackNavigator(
     FirstQuestion: FirstQuestion,
     List: ListPage,
     Levels: LevelsPage,
-    Difference: DifferencePage
+    Difference: DifferencePage,
+    Riddle: RiddlePage
   },
   {
     defaultNavigationOptions: {

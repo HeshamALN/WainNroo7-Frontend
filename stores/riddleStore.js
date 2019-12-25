@@ -3,14 +3,22 @@ import { instance } from "./instance";
 
 class RidleStore {
   loading = true;
-  diffcounter = 0;
-  riddles = [];
+  riddcounter = 0;
+  riddles = [
+    {
+      id: "1",
+      riddle: "",
+      question: "",
+      answer: [],
+      score: ""
+    }
+  ];
 
   fetchAllRiddles = async () => {
     try {
       const res = await instance.get("/api/");
       const riddles = res.data;
-      this.differences = riddles;
+      this.riddles = riddles;
       this.loading = false;
     } catch (err) {
       console.error(err);
@@ -20,7 +28,7 @@ class RidleStore {
 
 decorate(RidleStore, {
   riddles: observable,
-  diffcounter: observable,
+  riddcounter: observable,
   loading: observable
 });
 
