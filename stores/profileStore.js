@@ -4,7 +4,12 @@ import { instance } from "./instance";
 class ProfileStore {
   loading = true;
 
-  profile = [];
+  profile = [
+    {
+      id: "1",
+      gender: "Male"
+    }
+  ];
 
   age = null;
 

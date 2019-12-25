@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import Logout from "../Logout/index";
+// import AvatarSelect from "./AvatarSelect";
 
 //stores
 import authStore from "../../stores/authStore";
@@ -44,6 +45,7 @@ class ProfileScreen extends Component {
           >
             <Block flex style={styles.profileCard}>
               <Block middle style={styles.avatarContainer}>
+                {/* <Image source={AvatarSelect} style={styles.avatar} /> */}
                 <Image
                   source={require("../../assets/avatars/avatar.png")}
                   style={styles.avatar}
