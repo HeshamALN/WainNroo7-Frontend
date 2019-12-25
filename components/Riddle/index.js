@@ -11,7 +11,8 @@ export default class Riddle extends Component {
     this.state = {
       showDraggable: true,
       dropZoneValues: null,
-      pan: new Animated.ValueXY()
+      pan: new Animated.ValueXY(),
+      initial: "Drop me hereeeee!"
     };
 
     this.panResponder = PanResponder.create({
@@ -26,7 +27,8 @@ export default class Riddle extends Component {
       onPanResponderRelease: (e, gesture) => {
         if (this.isDropZone(gesture)) {
           this.setState({
-            showDraggable: false
+            showDraggable: false,
+            initial: "you have dropped me"
           });
         } else {
           Animated.spring(this.state.pan, { toValue: { x: 0, y: 0 } }).start();
@@ -53,7 +55,7 @@ export default class Riddle extends Component {
           onLayout={this.setDropZoneValues.bind(this)}
           style={styles.dropZone}
         >
-          <Text style={styles.text}>Drop me here!</Text>
+          <Text style={styles.text}>{this.state.initial}</Text>
         </View>
 
         {this.renderDraggable()}
