@@ -10,6 +10,10 @@ const LevelItem = ({ level, navigation, thePlace }) => {
     console.log(level.id);
     if (level.id == 1) {
       navigation.navigate("Difference", { DifferenceID: thePlace.difference });
+    } else if (level.id == 3) {
+      navigation.navigate("Trivia", { TriviaID: thePlace.trivia });
+    } else if (level.id == 2) {
+      navigation.navigate("riddle", { RiddleID: thePlace.riddle });
     }
   };
   return (
