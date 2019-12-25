@@ -11,6 +11,7 @@ class Difference extends Component {
     const theDiff = differenceStore.differences.find(
       theDiff => DifferenceID == theDiff.id
     );
+    console.log("theDiff", theDiff);
     const Circles = theDiff.coordinates.map(circle => (
       <CircleItem
         x={circle.xcoordinate}
