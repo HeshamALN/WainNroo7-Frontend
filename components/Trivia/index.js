@@ -13,12 +13,11 @@ import {
 } from "native-base";
 
 //stores
-import levelsStore from "../../stores/levelsStore";
-import data from "../../stores/triviadummy";
+import triviaStore from "../../stores/triviaStore";
 
 //components
 
-class LevelsList extends Component {
+class Trivia extends Component {
   state = {
     choice: 0,
     seconds: 10,
@@ -56,24 +55,28 @@ class LevelsList extends Component {
   }
 
   handleOnPress = async score => {
-    if (this.state.choice < 3) {
+    if (this.state.choice < 6) {
       await this.setState({ choice: this.state.choice + 1 });
       this.setState({ totalScore: this.state.totalScore + score });
     } else this.props.navigation.navigate("Levels");
   };
 
   render() {
+    const TriviaID = this.props.navigation.getParam("TriviaID");
+    const theTrivia = triviaStore.data.find(
+      theTrivia => TriviaID == theTrivia.id
+    );
     let choicee = this.state.choice;
-    if (this.state.choice < 3) {
+    if (this.state.choice < 6) {
       return (
         <Container>
           <Content>
             <>
               <H1>{this.state.seconds}</H1>
               <Text> {`Score : ${this.state.totalScore}`}</Text>
-              <Text>{data[0].questions[choicee].Question} </Text>
+              <Text>{theTrivia.questions[choicee].question} </Text>
               <List>
-                {data[0].questions[0].Answers.map(ans => (
+                {theTrivia.questions[choicee].answers.map(ans => (
                   <ListItem>
                     <Button onPress={() => this.handleOnPress(ans.score)}>
                       <Text> {`${this.state.choice} ${ans.answer}`}</Text>
@@ -100,5 +103,4 @@ class LevelsList extends Component {
   }
 }
 
-
-export default observer(LevelsList);
+export default observer(Trivia);

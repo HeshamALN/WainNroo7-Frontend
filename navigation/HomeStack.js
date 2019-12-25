@@ -12,6 +12,7 @@ import DifferencePage from "../components/Difference";
 import Trivia from "../components/Trivia";
 import RiddlePage from "../components/Riddle";
 
+
 const HomeStack = createStackNavigator(
   {
     ProfileScreen: ProfileScreen,
@@ -24,6 +25,7 @@ const HomeStack = createStackNavigator(
     Difference: DifferencePage,
     Trivia: Trivia,
     Riddle: RiddlePage
+
   },
   {
     defaultNavigationOptions: {
