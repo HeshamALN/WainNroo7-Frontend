@@ -6,9 +6,9 @@ class TriviaStore {
 
   data = [];
 
-  fetchAllData = async () => {
+  fetchAllData = async TriviaID => {
     try {
-      const res = await instance.get("/trivia/");
+      const res = await instance.get(`/trivia/${TriviaID}/`);
       const data = res.data;
       this.data = data;
       this.loading = false;
@@ -24,5 +24,4 @@ decorate(TriviaStore, {
 });
 
 const triviaStore = new TriviaStore();
-triviaStore.fetchAllData();
 export default triviaStore;

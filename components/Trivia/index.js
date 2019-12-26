@@ -9,7 +9,8 @@ import {
   Text,
   Button,
   ListItem,
-  H1
+  H1,
+  Spinner
 } from "native-base";
 
 //stores
@@ -30,6 +31,8 @@ class Trivia extends Component {
   };
 
   componentDidMount() {
+    const TriviaID = this.props.navigation.getParam("TriviaID");
+    triviaStore.fetchAllData(TriviaID);
     this.setState({ choice: 0, seconds: 10 });
     this.interval = setInterval(this.dec, 1000);
   }
@@ -56,16 +59,15 @@ class Trivia extends Component {
 
   handleOnPress = async score => {
     if (this.state.choice < 6) {
-      await this.setState({ choice: this.state.choice + 1 });
-      this.setState({ totalScore: this.state.totalScore + score });
+      this.setState({
+        choice: this.state.choice + 1,
+        totalScore: this.state.totalScore + score
+      });
     } else this.props.navigation.navigate("Levels");
   };
 
   render() {
-    const TriviaID = this.props.navigation.getParam("TriviaID");
-    const theTrivia = triviaStore.data.find(
-      theTrivia => TriviaID == theTrivia.id
-    );
+    if (triviaStore.loading) return <Spinner />;
     let choicee = this.state.choice;
     if (this.state.choice < 6) {
       return (
@@ -74,9 +76,9 @@ class Trivia extends Component {
             <>
               <H1>{this.state.seconds}</H1>
               <Text> {`Score : ${this.state.totalScore}`}</Text>
-              <Text>{theTrivia.questions[choicee].question} </Text>
+              <Text>{triviaStore.data.questions[choicee].question} </Text>
               <List>
-                {theTrivia.questions[choicee].answers.map(ans => (
+                {triviaStore.data.questions[choicee].answers.map(ans => (
                   <ListItem>
                     <Button onPress={() => this.handleOnPress(ans.score)}>
                       <Text> {`${this.state.choice} ${ans.answer}`}</Text>
