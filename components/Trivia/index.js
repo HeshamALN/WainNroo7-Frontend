@@ -135,12 +135,7 @@ class Trivia extends Component {
                     </ListItem>
                   ))}
                 </List>
-                <Button
-                  rounded
-                  bordered
-                  light
-                  large
-                />
+                <Button rounded bordered light large />
                 <H1
                   style={{
                     color: "white",
@@ -149,59 +144,27 @@ class Trivia extends Component {
                 >
                   {this.state.seconds}
                 </H1>
-
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  fontSize: 30,
-                  top: 5
-                }}
-              >
-              {theTrivia.questions[choicee].question}
-              </Text>
-              <List
-                style={{
-                  top: 20
-                }}
-              >
-                {theTrivia.questions[choicee].answers.map(ans => (
-                  <ListItem style={{ alignSelf: "center" }}>
-                    <Button
-                      rounded
-                      bordered
-                      dark
-                      style={{
-                        backgroundColor: "white",
-                        alignSelf: "center"
-                      }}
-                      onPress={() => this.handleOnPress(ans.score)}
-                    >
-                      <Text> {`${this.state.choice} ${ans.answer}`}</Text>
-                    </Button>
-                  </ListItem>
-                ))}
-              </List>
-              <Button
-                rounded
-                bordered
-                light
-                large
-                style={{
-                  top: 50,
-                  fontSize: 50,
-                  color: "white",
-                  alignSelf: "center"
-                }}
-              >
-                <Text> {`Score : ${this.state.totalScore}`}</Text>
-              </Button>
-            </>
-          </Content>
-          {/* <WinGame visible={this.state.choice >= 6 ? true : false} /> */}
-        </ImageBackground>
-      </Container>
-    );
+                <Button
+                  rounded
+                  bordered
+                  light
+                  large
+                  style={{
+                    top: 50,
+                    fontSize: 50,
+                    color: "white",
+                    alignSelf: "center"
+                  }}
+                >
+                  <Text> {`Score : ${this.state.totalScore}`}</Text>
+                </Button>
+              </>
+            </Content>
+            {/* <WinGame visible={this.state.choice >= 6 ? true : false} /> */}
+          </ImageBackground>
+        </Container>
+      );
+    }
   }
 }
 
