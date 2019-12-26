@@ -32,7 +32,7 @@ class Signup extends Component {
   };
 
   componentDidMount() {
-    if (authStore.user) this.props.navigation.navigate("List");
+    // if (authStore.user) this.props.navigation.navigate("List");
   }
 
   render() {

@@ -17,15 +17,13 @@ const HomeStack = createStackNavigator(
     List: ListPage,
     Riddle: RiddlePage,
     Trivia: Trivia,
+    Signup: Signup,
+    FirstQuestion: FirstQuestion,
     ProfileScreen: ProfileScreen,
     Login: Login,
-    Signup: Signup,
     LandingPageScreen: LandingPageScreen,
-    FirstQuestion: FirstQuestion,
     Levels: LevelsPage,
-    Difference: DifferencePage,
-    Trivia: Trivia,
-    Riddle: RiddlePage
+    Difference: DifferencePage
   },
   {
     defaultNavigationOptions: {

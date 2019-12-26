@@ -17,14 +17,17 @@ import {
 //stores
 import triviaStore from "../../stores/triviaStore";
 import styles from "../ListPage/styles";
+import WinGame from "../WinGame";
+import { TabRouter } from "react-navigation";
 
 //components
 
 class Trivia extends Component {
   state = {
     choice: 0,
-    seconds: 10,
-    totalScore: 0
+    seconds: 30,
+    totalScore: 0,
+    modalVisible: true
   };
 
   dec = () => {
@@ -137,37 +140,68 @@ class Trivia extends Component {
                   bordered
                   light
                   large
+                />
+                <H1
                   style={{
-                    top: 50,
-                    fontSize: 50,
                     color: "white",
                     alignSelf: "center"
                   }}
                 >
-                  <Text> {`Score : ${this.state.totalScore}`}</Text>
-                </Button>
-              </>
-            </Content>
-          </ImageBackground>
-        </Container>
-      );
-    } else {
-      return (
-        <Container>
-          <ImageBackground
-            source={require("../../assets/images/bg5.png")}
-            style={styles.container}
-          >
-            <Content>
-              <Text> {`Ur Total Score : ${this.state.totalScore}`}</Text>
-              <Button onPress={this.handleOnPress}>
-                <Text> {`${this.state.choice} Exit`}</Text>
+                  {this.state.seconds}
+                </H1>
+
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontSize: 30,
+                  top: 5
+                }}
+              >
+              {theTrivia.questions[choicee].question}
+              </Text>
+              <List
+                style={{
+                  top: 20
+                }}
+              >
+                {theTrivia.questions[choicee].answers.map(ans => (
+                  <ListItem style={{ alignSelf: "center" }}>
+                    <Button
+                      rounded
+                      bordered
+                      dark
+                      style={{
+                        backgroundColor: "white",
+                        alignSelf: "center"
+                      }}
+                      onPress={() => this.handleOnPress(ans.score)}
+                    >
+                      <Text> {`${this.state.choice} ${ans.answer}`}</Text>
+                    </Button>
+                  </ListItem>
+                ))}
+              </List>
+              <Button
+                rounded
+                bordered
+                light
+                large
+                style={{
+                  top: 50,
+                  fontSize: 50,
+                  color: "white",
+                  alignSelf: "center"
+                }}
+              >
+                <Text> {`Score : ${this.state.totalScore}`}</Text>
               </Button>
-            </Content>
-          </ImageBackground>
-        </Container>
-      );
-    }
+            </>
+          </Content>
+          {/* <WinGame visible={this.state.choice >= 6 ? true : false} /> */}
+        </ImageBackground>
+      </Container>
+    );
   }
 }
 
