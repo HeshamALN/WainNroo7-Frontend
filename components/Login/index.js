@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 
 // Styling Components
-import { TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+import {
+  TextInput,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Text
+} from "react-native";
 
-import { Text } from "native-base";
 // import styles from "./styles";
 
 //store
