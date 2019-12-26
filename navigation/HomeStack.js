@@ -23,7 +23,8 @@ const HomeStack = createStackNavigator(
     List: ListPage,
     Levels: LevelsPage,
     Difference: DifferencePage,
-    Trivia: Trivia
+    Trivia: Trivia,
+    Riddle: RiddlePage
   },
   {
     defaultNavigationOptions: {
