@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { ImageBackground, View } from "react-native";
+import { Spinner } from "native-base";
 import styles from "./styles";
 import listStore from "../../stores/listStore";
 import Pin from "./Pins";
+import { observer } from "mobx-react";
 
-export default class List extends Component {
+class List extends Component {
   render() {
     const Listofplaces = listStore.places.map(place => (
       <Pin place={place} key={place.id} />
     ));
+    if (listStore.loading) return <Spinner />;
     return (
       <ImageBackground
         source={require("../../assets/images/KW.png")}
@@ -21,3 +24,5 @@ export default class List extends Component {
     );
   }
 }
+
+export default observer(List);

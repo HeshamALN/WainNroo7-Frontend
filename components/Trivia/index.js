@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 // NativeBase Components
-import { Alert } from "react-native";
+import { Alert, ImageBackground } from "react-native";
 import {
   List,
   Content,
   Container,
+  Icon,
   Text,
   Button,
   ListItem,
@@ -15,6 +16,7 @@ import {
 
 //stores
 import triviaStore from "../../stores/triviaStore";
+import styles from "../ListPage/styles";
 
 //components
 
@@ -47,7 +49,7 @@ class Trivia extends Component {
           {
             text: " < Back",
             onPress: () => {
-              this.props.navigation.navigate("Levels");
+              this.props.navigation.navigate("List");
               console.log("OK Pressed");
             }
           }
@@ -72,37 +74,106 @@ class Trivia extends Component {
     if (this.state.choice < 6) {
       return (
         <Container>
-          <Content>
-            <>
-              <H1>{this.state.seconds}</H1>
-              <Text> {`Score : ${this.state.totalScore}`}</Text>
-              <Text>{triviaStore.data.questions[choicee].question} </Text>
-              <List>
-                {triviaStore.data.questions[choicee].answers.map(ans => (
-                  <ListItem>
-                    <Button onPress={() => this.handleOnPress(ans.score)}>
-                      <Text> {`${this.state.choice} ${ans.answer}`}</Text>
-                    </Button>
-                  </ListItem>
-                ))}
-              </List>
-            </>
-          </Content>
+          <ImageBackground
+            source={require("../../assets/images/bg5.png")}
+            style={styles.container}
+          >
+            <Content style={{ top: 70, alignSelf: "center" }}>
+              <>
+                <Content>
+                  <Icon
+                    name="timer"
+                    type="MaterialIcons"
+                    style={{
+                      color: "white",
+                      alignSelf: "center",
+                      fontSize: 50
+                    }}
+                  />
+                  <H1
+                    style={{
+                      color: "white",
+                      alignSelf: "center"
+                    }}
+                  >
+                    {this.state.seconds}
+                  </H1>
+                </Content>
+
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    fontSize: 30,
+                    top: 5
+                  }}
+                >
+                  {triviaStore.data.questions[choicee].question}
+                </Text>
+                <List
+                  style={{
+                    top: 20
+                  }}
+                >
+                  {triviaStore.data.questions[choicee].answers.map(ans => (
+                    <ListItem style={{ alignSelf: "center" }}>
+                      <Button
+                        rounded
+                        bordered
+                        dark
+                        style={{
+                          backgroundColor: "white",
+                          alignSelf: "center"
+                        }}
+                        onPress={() => this.handleOnPress(ans.score)}
+                      >
+                        <Text> {`${this.state.choice} ${ans.answer}`}</Text>
+                      </Button>
+                    </ListItem>
+                  ))}
+                </List>
+                <Button
+                  rounded
+                  bordered
+                  light
+                  large
+                  style={{
+                    top: 50,
+                    fontSize: 50,
+                    color: "white",
+                    alignSelf: "center"
+                  }}
+                >
+                  <Text> {`Score : ${this.state.totalScore}`}</Text>
+                </Button>
+              </>
+            </Content>
+          </ImageBackground>
         </Container>
       );
     } else {
       return (
         <Container>
-          <Content>
-            <Text> {`Ur Total Score : ${this.state.totalScore}`}</Text>
-            <Button onPress={this.handleOnPress}>
-              <Text> {`${this.state.choice} Exit`}</Text>
-            </Button>
-          </Content>
+          <ImageBackground
+            source={require("../../assets/images/bg5.png")}
+            style={styles.container}
+          >
+            <Content>
+              <Text> {`Ur Total Score : ${this.state.totalScore}`}</Text>
+              <Button onPress={this.handleOnPress}>
+                <Text> {`${this.state.choice} Exit`}</Text>
+              </Button>
+            </Content>
+          </ImageBackground>
         </Container>
       );
     }
   }
 }
+
+// LevelsList.navigationOptions = {
+//   title: "وين نروح؟؟",
+//   headerRight:
+// };
 
 export default observer(Trivia);
