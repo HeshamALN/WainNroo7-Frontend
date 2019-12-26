@@ -14,6 +14,7 @@ import RiddlePage from "../components/Riddle";
 
 const HomeStack = createStackNavigator(
   {
+    Riddle: RiddlePage,
     ProfileScreen: ProfileScreen,
     Login: Login,
     Signup: Signup,
@@ -22,8 +23,7 @@ const HomeStack = createStackNavigator(
     List: ListPage,
     Levels: LevelsPage,
     Difference: DifferencePage,
-    Trivia: Trivia,
-    Riddle: RiddlePage
+    Trivia: Trivia
   },
   {
     defaultNavigationOptions: {
