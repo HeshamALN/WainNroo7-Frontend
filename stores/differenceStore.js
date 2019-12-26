@@ -1,17 +1,14 @@
 import { decorate, observable } from "mobx";
 import { instance } from "./instance";
 
-//images
-import codedimg from "../assets/images/coded.jpg";
-
 class DifferenceStore {
   loading = true;
   diffcounter = 0;
   differences = [];
 
-  fetchAllDifferences = async () => {
+  fetchAllDifferences = async DifferenceID => {
     try {
-      const res = await instance.get("/diffs/");
+      const res = await instance.get(`/diffs/${DifferenceID}/`);
       const differences = res.data;
       this.differences = differences;
       this.loading = false;
@@ -33,5 +30,4 @@ decorate(DifferenceStore, {
 });
 
 const differenceStore = new DifferenceStore();
-differenceStore.fetchAllDifferences();
 export default differenceStore;
