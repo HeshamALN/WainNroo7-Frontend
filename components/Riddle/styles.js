@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: "#fff"
   },
   draggableContainer: {
-    position: "absolute",
+    // position: "absolute",
     top: Window.height / 2 - CIRCLE_RADIUS,
     left: Window.width / 2 - CIRCLE_RADIUS
   },

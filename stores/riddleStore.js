@@ -1,24 +1,43 @@
 import { decorate, observable } from "mobx";
 import { instance } from "./instance";
 
-class RidleStore {
+class RiddleStore {
   loading = true;
-  riddcounter = 0;
-  riddles = [
+  data = [
     {
-      id: "1",
-      riddle: "",
-      question: "",
-      answer: [],
-      score: ""
+      id: 1,
+      lock: false,
+      questions: [
+        {
+          question: "1. Who’s our favorite Monkey ?!",
+          answers: [
+            {
+              answer: "Kong",
+              right: false,
+              score: 0.0
+            },
+            {
+              answer: "Sasquatch",
+              right: false,
+              score: 0.0
+            },
+            {
+              answer: "Poppo",
+              right: true,
+              score: 10.0
+            }
+          ]
+        }
+      ]
     }
   ];
 
-  fetchAllRiddles = async () => {
+  fetchAllData = async () => {
     try {
-      const res = await instance.get("/api/");
-      const riddles = res.data;
-      this.riddles = riddles;
+      // const res = await instance.get("/riddle/");
+      const res = await instance.get("/trivia/");
+      const data = res.data;
+      this.data = data;
       this.loading = false;
     } catch (err) {
       console.error(err);
@@ -26,11 +45,11 @@ class RidleStore {
   };
 }
 
-decorate(RidleStore, {
-  riddles: observable,
-  riddcounter: observable,
+decorate(RiddleStore, {
+  data: observable,
   loading: observable
 });
 
-const ridleStore = new RidleStore();
-export default ridleStore;
+const riddleStore = new RiddleStore();
+// riddleStore.fetchAllData();
+export default riddleStore;
