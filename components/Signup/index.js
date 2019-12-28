@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 // Styling Components
 import {
@@ -7,7 +8,9 @@ import {
   View,
   Picker,
   ImageBackground,
-  DatePicker
+  DatePicker,
+  Button,
+  Platform
 } from "react-native";
 
 import { Text } from "native-base";
@@ -17,7 +20,7 @@ import styles from "./styles";
 import authStore from "../../stores/authStore";
 
 import GenderPicker from "./GenderPicker";
-
+import DatePickerr from "./DatePicker";
 class Signup extends Component {
   state = {
     username: "",
@@ -26,7 +29,8 @@ class Signup extends Component {
     last_name: "",
     email: "",
     gender: "Female",
-    birth_date: ""
+    birth_date: null,
+    showDatePicker: false
   };
 
   updateGender = gender => this.setState({ gender });
@@ -35,7 +39,29 @@ class Signup extends Component {
     if (authStore.user) this.props.navigation.navigate("List");
   }
 
+  showDatePicker = () => {
+    this.setState({
+      showDatePicker: true
+    });
+  }
+
+  setDate = (event, date) => {
+    date = date || this.state.birth_date;
+
+    this.setState({
+      showDatePicker: Platform.OS === 'ios' ? true : false,
+      birth_date: date,
+    });
+  }
+
+  getReadableDate = birth_date => {
+    return birth_date.getDate().toString() + '-' + (birth_date.getMonth() + 1).toString() + '-' + birth_date.getFullYear().toString()
+  }
+
   render() {
+    const { showDatePicker } = this.state;
+    const { birth_date } = this.state;
+
     return (
       <ImageBackground
         source={require("../../assets/images/bg6-min.png")}
@@ -72,7 +98,7 @@ class Signup extends Component {
             style={styles.authTextInput}
             placeholder="Last name"
             placeholderTextColor="white"
-            onChangeText={gender => this.setState({ gender })}
+            onChangeText={last_name => this.setState({ last_name })}
           />
 
           {/* <GenderPicker
@@ -84,31 +110,20 @@ class Signup extends Component {
             style={styles.authTextInput}
             placeholder="Gender"
             placeholderTextColor="white"
-            onChangeText={birth_date => this.setState({ birth_date })}
+            onChangeText={gender => this.setState({ gender })}
           />
 
-          <TextInput
+          <TouchableOpacity
             style={styles.authTextInput}
-            placeholder="Birthday"
-            placeholderTextColor="white"
-            onChangeText={birth_date => this.setState({ birth_date })}
-          />
-          {/* 
-        <DatePicker
-          minimumDate={new Date(1900, 1, 1)}
-          maximumDate={new Date(2019, 12, 31)}
-          locale={"en"}
-          timeZoneOffsetInMinutes={undefined}
-          modalTransparent={false}
-          animationType={"fade"}
-          androidMode={"default"}
-          placeHolderText="Select date"
-          textStyle={{ color: "green" }}
-          placeHolderTextStyle={{ color: "#d3d3d3" }}
-          onDateChange={birth_date => this.setState({ birth_date })}
-          disabled={false}
-        />
-        <Text>Date: {this.state.birth_date}</Text> */}
+            onPress={this.showDatePicker}
+          > 
+            <Text style={styles.authTextInput}>{birth_date ? this.getReadableDate(birth_date) : 'Birthday'}</Text>
+          </TouchableOpacity>
+
+          { showDatePicker && <DateTimePicker value={new Date()}
+                    maximumDate={new Date(2005, 11, 31)}
+                    display="default"
+                    onChange={this.setDate} />}
 
           <TouchableOpacity
             style={styles.authButton}

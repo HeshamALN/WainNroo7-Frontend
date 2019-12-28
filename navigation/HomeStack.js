@@ -14,11 +14,11 @@ import RiddlePage from "../components/Riddle";
 
 const HomeStack = createStackNavigator(
   {
-    Riddle: RiddlePage,
     List: ListPage,
     Levels: LevelsPage,
     Difference: DifferencePage,
-    Trivia: Trivia
+    Trivia: Trivia,
+    Riddle: RiddlePage,
   },
   {
     defaultNavigationOptions: {
