@@ -4,7 +4,15 @@ import { instance } from "./instance";
 class ProfileStore {
   loading = true;
 
-  profile = [];
+  profile = {
+    first_name : "farah",
+    last_name : "alkhaldi",
+    username : "farah123",
+    email : "farah123@outlook.com",
+    gender : "Female",
+    birth_day : "4/12/1994",
+    total_score : 0
+  };
 
   age = null;
 
@@ -17,6 +25,16 @@ class ProfileStore {
       console.error(err);
     }
   };
+
+
+
+updateTotalScore=(score)=> {
+  // instance.put(url,score)
+  this.profile.total_score += score
+
+}
+
+
 
   getAge = async () => {
     try {
