@@ -1,10 +1,10 @@
 import { createSwitchNavigator } from "react-navigation";
 
 // Components
-import LandingPageScreen from "../components/Landing Page/index";
-import Login from "../components/Login/index";
-import Signup from "../components/Signup/index";
-import FirstQuestion from "../components/FirstQuestion/index";
+import LandingPageScreen from "../components/Landing Page";
+import Login from "../components/Login";
+import Signup from "../components/Signup";
+import FirstQuestion from "../components/FirstQuestion";
 import HomeStack from "./HomeStack";
 import DrawerNav from "./DrawerNav";
 
