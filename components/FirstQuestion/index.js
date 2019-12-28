@@ -85,7 +85,7 @@ class FirstQuestion extends Component {
             this.toggleModal(true);
           }}
         >
-          <Text style={styles.text}>Play</Text>
+          <Text style={styles.text}>START</Text>
         </TouchableHighlight>
       </View>
     );
@@ -96,17 +96,21 @@ export default FirstQuestion;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: "#ede3f2",
+    backgroundColor: "transparent",
+    top: 270,
     padding: 100
   },
   modal: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#fffff0",
+    backgroundColor: "transparent",
     padding: 100
   },
   text: {
     color: "#3f2949",
-    marginTop: 10
+    textAlign: "center",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 20
   }
 });

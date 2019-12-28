@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, ImageBackground, Button, StyleSheet } from "react-native";
 // import Logo from "./assets/chef.png";
 import FirstQuestion from "../FirstQuestion/index";
 
@@ -10,29 +10,30 @@ class LandingPageScreen extends Component {
 
   render() {
     return (
-      <View>
+      <ImageBackground
+        source={require("../../assets/images/homepage.png")}
+        style={{ flex: 1, width: "100%", height: "100%" }}
+      >
+        <FirstQuestion navigation={this.props.navigation} />
         <View style={styles.topContainer}>
-          <Text style={styles.h1}>Wain Nroo7?</Text>
-          <FirstQuestion navigation={this.props.navigation} />
           <Button
-            title="already have an account?"
-            style={styles.button}
+            title="Already have an account?"
             onPress={() => this.props.navigation.navigate("Login")} //take him to login page
-            color=""
+            color="#289486"
           />
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }
-LandingPageScreen.navigationOptions = {
-  title: "le landing page"
-};
+// LandingPageScreen.navigationOptions = {
+//   title: "le landing page"
+// };
 export default LandingPageScreen;
 
 const styles = StyleSheet.create({
   topContainer: {
-    top: 60
+    top: 190
   },
   middleContainer: {
     flex: 3,
