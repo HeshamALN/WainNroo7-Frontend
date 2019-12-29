@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from "@react-native-community/datetimepicker";
+import RNPickerSelect from "react-native-picker-select";
 
 // Styling Components
 import {
@@ -43,20 +44,26 @@ class Signup extends Component {
     this.setState({
       showDatePicker: true
     });
-  }
+  };
 
   setDate = (event, date) => {
     date = date || this.state.birth_date;
 
     this.setState({
-      showDatePicker: Platform.OS === 'ios' ? true : false,
-      birth_date: date,
+      showDatePicker: Platform.OS === "ios" ? true : false,
+      birth_date: date
     });
-  }
+  };
 
   getReadableDate = birth_date => {
-    return birth_date.getDate().toString() + '-' + (birth_date.getMonth() + 1).toString() + '-' + birth_date.getFullYear().toString()
-  }
+    return (
+      birth_date.getDate().toString() +
+      "-" +
+      (birth_date.getMonth() + 1).toString() +
+      "-" +
+      birth_date.getFullYear().toString()
+    );
+  };
 
   render() {
     const { showDatePicker } = this.state;
@@ -106,24 +113,33 @@ class Signup extends Component {
             onValueChange={this.updateGender.bind(this)}
           /> */}
 
-          <TextInput
+          <RNPickerSelect
             style={styles.authTextInput}
-            placeholder="Gender"
-            placeholderTextColor="white"
-            onChangeText={gender => this.setState({ gender })}
-          />
-
+            onValueChange={gender => console.log(gender)}
+            items={[
+              { label: "Male", value: "Male" },
+              { label: "Female", value: "Female" }
+            ]}
+          >
+            <Text style={styles.authTextInput}>Gender</Text>
+          </RNPickerSelect>
           <TouchableOpacity
             style={styles.authTextInput}
             onPress={this.showDatePicker}
-          > 
-            <Text style={styles.authTextInput}>{birth_date ? this.getReadableDate(birth_date) : 'Birthday'}</Text>
+          >
+            <Text style={styles.authTextInput}>
+              {birth_date ? this.getReadableDate(birth_date) : "Birthday"}
+            </Text>
           </TouchableOpacity>
 
-          { showDatePicker && <DateTimePicker value={new Date()}
-                    maximumDate={new Date(2005, 11, 31)}
-                    display="default"
-                    onChange={this.setDate} />}
+          {showDatePicker && (
+            <DateTimePicker
+              value={new Date()}
+              maximumDate={new Date(2005, 11, 31)}
+              display="default"
+              onChange={this.setDate}
+            />
+          )}
 
           <TouchableOpacity
             style={styles.authButton}
