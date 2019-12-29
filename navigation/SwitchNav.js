@@ -8,7 +8,6 @@ import FirstQuestion from "../components/FirstQuestion";
 import HomeStack from "./HomeStack";
 import DrawerNav from "./DrawerNav";
 
-
 const SwitchNav = createSwitchNavigator(
   {
     LandingPageScreen: LandingPageScreen,
