@@ -29,6 +29,7 @@ const { width, height } = Dimensions.get("screen");
 //     content: "Your score: /n Your score: /n Your score: /n"
 //   }
 // ];
+
 class ProfileScreen extends Component {
   async componentDidMount() {
     if (authStore.user) await profileStore.fetchProfile();
@@ -45,7 +46,11 @@ class ProfileScreen extends Component {
             <Block flex style={styles.profileCard}>
               <Block middle style={styles.avatarContainer}>
                 <Image
-                  source={require("../../assets/avatars/avatar.png")}
+                  source={
+                    ProfileStore.profile.gender == "Male"
+                      ? require("../../assets/avatars/avatar.png")
+                      : require("../../assets/avatars/avatar2.png")
+                  }
                   style={styles.avatar}
                 />
               </Block>

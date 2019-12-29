@@ -7,9 +7,11 @@ import Signup from "../components/Signup";
 import FirstQuestion from "../components/FirstQuestion";
 import HomeStack from "./HomeStack";
 import DrawerNav from "./DrawerNav";
+import ProfileScreen from "../components/Profile";
 
 const SwitchNav = createSwitchNavigator(
   {
+    Profile: ProfileScreen,
     LandingPageScreen: LandingPageScreen,
     FirstQuestion: FirstQuestion,
     Login: Login,
