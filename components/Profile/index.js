@@ -131,6 +131,9 @@ class ProfileScreen extends Component {
                   <Text bold size={15} color="#32325D">
                     Gender: {ProfileStore.profile.gender}
                   </Text>
+                  <Text bold size={15} color="#32325D">
+                    Score: {ProfileStore.profile.total_score}
+                  </Text>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                     <Block style={styles.divider} />
                   </Block>
