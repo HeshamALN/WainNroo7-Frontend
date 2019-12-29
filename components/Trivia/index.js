@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 // NativeBase Components
-import { Alert, ImageBackground } from "react-native";
+import { ImageBackground, Image, View } from "react-native";
 import {
   List,
   Content,
@@ -17,8 +17,6 @@ import {
 //stores
 import triviaStore from "../../stores/triviaStore";
 import styles from "../ListPage/styles";
-import WinGame from "../WinGame";
-import { TabRouter } from "react-navigation";
 
 //components
 
@@ -27,7 +25,7 @@ class Trivia extends Component {
     choice: 0,
     seconds: 30,
     totalScore: 0,
-    modalVisible: true
+    modalVisible: false
   };
 
   dec = () => {
@@ -35,122 +33,114 @@ class Trivia extends Component {
       this.setState({ seconds: this.state.seconds - 1 });
   };
 
+  toggleModal = () => {
+    this.setState({ modalVisible: !this.state.modalVisible });
+  };
+
   componentDidMount() {
     const TriviaID = this.props.navigation.getParam("TriviaID");
     triviaStore.fetchAllData(TriviaID);
-    this.setState({ choice: 0, seconds: 10 });
+    this.setState({ choice: 0, seconds: 3 });
     this.interval = setInterval(this.dec, 1000);
   }
 
   componentDidUpdate() {
     if (this.state.seconds === 0) {
       clearInterval(this.interval);
-      Alert.alert(
-        "T I M E",
-        "O  U  T",
-        [
-          {
-            text: " < Back",
-            onPress: () => {
-              this.props.navigation.navigate("List");
-              console.log("OK Pressed");
-            }
-          }
-        ],
-        { cancelable: false }
-      );
+      this.props.navigation.navigate("Timeout");
     }
   }
 
   handleOnPress = async score => {
-    if (this.state.choice < 6) {
+    if (this.state.choice <= 5) {
       this.setState({
         choice: this.state.choice + 1,
         totalScore: this.state.totalScore + score
       });
-    } else this.props.navigation.navigate("Levels");
+    } else {
+      this.setState({
+        totalScore: this.state.totalScore + score
+      });
+      this.toggleModal();
+    }
   };
 
   render() {
     if (triviaStore.loading) return <Spinner />;
     let choicee = this.state.choice;
-    if (this.state.choice < 6) {
+    if (choicee < 6) {
       return (
         <Container>
           <ImageBackground
             source={require("../../assets/images/bg5.png")}
             style={styles.container}
           >
-            <Content style={{ top: 70, alignSelf: "center" }}>
+            <Content style={{ top: 20, alignSelf: "center" }}>
               <>
-                <Content>
-                  <Icon
-                    name="timer"
-                    type="MaterialIcons"
+                <View
+                  style={{ flex: 1, flexDirection: "row", alignSelf: "center" }}
+                >
+                  <Image
+                    source={require("../../assets/images/timer.png")}
+                    style={{ width: 70, height: 70, alignSelf: "center" }}
+                  />
+                  <Text
                     style={{
                       color: "white",
                       alignSelf: "center",
                       fontSize: 50
                     }}
-                  />
-                  <H1
-                    style={{
-                      color: "white",
-                      alignSelf: "center"
-                    }}
                   >
                     {this.state.seconds}
-                  </H1>
-                </Content>
+                  </Text>
+                </View>
 
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontSize: 30,
-                    top: 5
-                  }}
-                >
-                  {triviaStore.data.questions[choicee].question}
-                </Text>
-                <List
-                  style={{
-                    top: 20
-                  }}
-                >
-                  {triviaStore.data.questions[choicee].answers.map(ans => (
-                    <ListItem style={{ alignSelf: "center" }}>
-                      <Button
-                        rounded
-                        bordered
-                        dark
-                        style={{
-                          backgroundColor: "white",
-                          alignSelf: "center"
-                        }}
-                        onPress={() => this.handleOnPress(ans.score)}
-                      >
-                        <Text> {`${this.state.choice} ${ans.answer}`}</Text>
-                      </Button>
-                    </ListItem>
-                  ))}
-                </List>
-                <Button rounded bordered light large />
-                <H1
-                  style={{
-                    color: "white",
-                    alignSelf: "center"
-                  }}
-                >
-                  {this.state.seconds}
-                </H1>
+                {this.state.choice < 6 && (
+                  <>
+                    <Text
+                      style={{
+                        color: "white",
+                        textAlign: "center",
+                        fontSize: 20,
+                        top: 50
+                      }}
+                    >
+                      {triviaStore.data.questions[choicee].question}
+                    </Text>
+                    <List
+                      style={{
+                        top: 70
+                      }}
+                    >
+                      {triviaStore.data.questions[choicee].answers.map(ans => (
+                        <ListItem
+                          style={{ alignSelf: "center" }}
+                          key={ans.answer}
+                        >
+                          <Button
+                            rounded
+                            bordered
+                            dark
+                            style={{
+                              backgroundColor: "white",
+                              alignSelf: "center"
+                            }}
+                            onPress={() => this.handleOnPress(ans.score)}
+                          >
+                            <Text> {`${this.state.choice} ${ans.answer}`}</Text>
+                          </Button>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </>
+                )}
                 <Button
                   rounded
                   bordered
                   light
                   large
                   style={{
-                    top: 50,
+                    top: 100,
                     fontSize: 50,
                     color: "white",
                     alignSelf: "center"
@@ -160,11 +150,65 @@ class Trivia extends Component {
                 </Button>
               </>
             </Content>
-            {/* <WinGame visible={this.state.choice >= 6 ? true : false} /> */}
           </ImageBackground>
         </Container>
       );
-    }
+    } else
+      return (
+        <Container>
+          <ImageBackground
+            source={require("../../assets/images/bg5.png")}
+            style={styles.container}
+          >
+            <Content style={{ top: 70, alignSelf: "center" }}>
+              {clearInterval(this.interval)}
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontSize: 20
+                }}
+              >{`UR Total Score : ${this.state.totalScore}`}</Text>
+              {this.state.totalScore === 60 ? (
+                <H1
+                  style={{
+                    color: "white",
+                    alignSelf: "center",
+                    top: 200
+                  }}
+                >
+                  You Won !
+                </H1>
+              ) : (
+                <H1
+                  style={{
+                    color: "white",
+                    alignSelf: "center",
+                    top: 200
+                  }}
+                >
+                  L O S E R ! !
+                </H1>
+              )}
+              <Button
+                rounded
+                bordered
+                light
+                large
+                onPress={() => this.props.navigation.navigate("List")}
+                style={{
+                  top: 250,
+                  fontSize: 50,
+                  color: "white",
+                  alignSelf: "center"
+                }}
+              >
+                <Text style={{ color: "white" }}>Go Back !</Text>
+              </Button>
+            </Content>
+          </ImageBackground>
+        </Container>
+      );
   }
 }
 
