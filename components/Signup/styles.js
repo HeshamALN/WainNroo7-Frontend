@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import RNPickerSelect, { defaultStyles } from "react-native-picker-select";
 
 const styles = StyleSheet.create({
   authButton: {
@@ -49,5 +50,16 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
-
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 200,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 4,
+    color: "black",
+    paddingRight: 30 // to ensure the text is never behind the icon
+  }
+});
 export default styles;
