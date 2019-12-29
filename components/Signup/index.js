@@ -101,9 +101,10 @@ class Signup extends Component {
             date={this.state.date}
             showIcon="flase"
             mode="date"
-            placeholder="Birthday"
+            placeholder="Birthday" // LAYLA LOOK HERE, PLZ
             format="YYYY-MM-DD"
-            maxDate="1980-01-01"
+            minDate="1980-01-01"
+            maxDate="2000-01-01"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
             onChangeText={birth_date => this.setState({ birth_date })}
