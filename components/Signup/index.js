@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import RNPickerSelect from "react-native-picker-select";
+import DatePicker from "react-native-datepicker";
 
 // Styling Components
 import {
   TextInput,
   TouchableOpacity,
   View,
-  Picker,
   ImageBackground,
-  DatePicker,
-  Button,
   Platform
 } from "react-native";
 
@@ -22,6 +19,7 @@ import authStore from "../../stores/authStore";
 
 import GenderPicker from "./GenderPicker";
 import DatePickerr from "./DatePicker";
+import { HeaderStyleInterpolator } from "react-navigation-stack";
 class Signup extends Component {
   state = {
     username: "",
@@ -29,41 +27,16 @@ class Signup extends Component {
     first_name: "",
     last_name: "",
     email: "",
-    gender: "Female",
-    birth_date: null,
+    gender: "Gender",
+    birth_date: "0000-00-00",
     showDatePicker: false
   };
-
+  onChange = birth_date => this.setState({ birth_date });
   updateGender = gender => this.setState({ gender });
 
   componentDidMount() {
     if (authStore.user) this.props.navigation.navigate("List");
   }
-
-  showDatePicker = () => {
-    this.setState({
-      showDatePicker: true
-    });
-  };
-
-  setDate = (event, date) => {
-    date = date || this.state.birth_date;
-
-    this.setState({
-      showDatePicker: Platform.OS === "ios" ? true : false,
-      birth_date: date
-    });
-  };
-
-  getReadableDate = birth_date => {
-    return (
-      birth_date.getDate().toString() +
-      "-" +
-      (birth_date.getMonth() + 1).toString() +
-      "-" +
-      birth_date.getFullYear().toString()
-    );
-  };
 
   render() {
     const { showDatePicker } = this.state;
@@ -112,34 +85,31 @@ class Signup extends Component {
             selectedValue={this.state.gender}
             onValueChange={this.updateGender.bind(this)}
           /> */}
-
           <RNPickerSelect
             style={styles.authTextInput}
-            onValueChange={gender => console.log(gender)}
+            onValueChange={gender => this.setState({ gender })}
             items={[
               { label: "Male", value: "Male" },
               { label: "Female", value: "Female" }
             ]}
           >
-            <Text style={styles.authTextInput}>Gender</Text>
+            <Text style={styles.authTextInput}>{this.state.gender}</Text>
           </RNPickerSelect>
-          <TouchableOpacity
-            style={styles.authTextInput}
-            onPress={this.showDatePicker}
-          >
-            <Text style={styles.authTextInput}>
-              {birth_date ? this.getReadableDate(birth_date) : "Birthday"}
-            </Text>
-          </TouchableOpacity>
 
-          {showDatePicker && (
-            <DateTimePicker
-              value={new Date()}
-              maximumDate={new Date(2005, 11, 31)}
-              display="default"
-              onChange={this.setDate}
-            />
-          )}
+          <DatePicker
+            style={styles.authTextInput}
+            date={this.state.date}
+            showIcon="flase"
+            mode="date"
+            placeholder="Birthday"
+            format="YYYY-MM-DD"
+            maxDate="1980-01-01"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            onChangeText={birth_date => this.setState({ birth_date })}
+          >
+            <Text style={styles.authTextInput}>{this.state.birth_date}</Text>
+          </DatePicker>
 
           <TouchableOpacity
             style={styles.authButton}

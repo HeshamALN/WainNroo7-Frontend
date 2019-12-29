@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     textAlign: "center",
-    color: "#fff"
+    color: "black"
   },
   draggableContainer: {
     // position: "absolute",
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     left: Window.width / 2 - CIRCLE_RADIUS
   },
   circle: {
-    backgroundColor: "#1abc9c",
+    backgroundColor: "white",
     width: CIRCLE_RADIUS * 3,
     height: CIRCLE_RADIUS * 1.8,
     borderRadius: CIRCLE_RADIUS
