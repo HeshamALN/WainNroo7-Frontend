@@ -1,21 +1,25 @@
 import React, { Component } from "react";
+import RNPickerSelect from "react-native-picker-select";
+import DatePicker from "react-native-datepicker";
 
 // Styling Components
 import {
   TextInput,
   TouchableOpacity,
   View,
-  StyleSheet,
-  Picker,
-  DatePicker
+  ImageBackground,
+  Platform
 } from "react-native";
 
 import { Text } from "native-base";
-// import styles from "./styles";
+import styles from "./styles";
 
 //store
 import authStore from "../../stores/authStore";
 
+import GenderPicker from "./GenderPicker";
+import DatePickerr from "./DatePicker";
+import { HeaderStyleInterpolator } from "react-navigation-stack";
 class Signup extends Component {
   state = {
     username: "",
@@ -23,131 +27,112 @@ class Signup extends Component {
     first_name: "",
     last_name: "",
     email: "",
-    gender: "Male",
-    birth_date: ""
+    gender: "Gender",
+    birthday: "1992-05-03"
   };
-
-  updateGender = gender => {
-    this.setState({ gender: gender });
-  };
+  onChange = birthday => this.setState({ birthday });
+  updateGender = gender => this.setState({ gender });
 
   componentDidMount() {
     // if (authStore.user) this.props.navigation.navigate("List");
   }
 
   render() {
+    const { showDatePicker } = this.state;
+    const { birthday } = this.state;
+
     return (
-      <View style={styles.authContainer}>
-        <Text style={styles.authTitle}>Signup</Text>
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="Username"
-          onChangeText={username => this.setState({ username })}
-          placeholderTextColor="#A6AEC1"
-        />
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="email"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={email => this.setState({ email })}
-        />
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="Password"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={password => this.setState({ password })}
-          secureTextEntry={true}
-        />
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="first_name"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={first_name => this.setState({ first_name })}
-        />
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="last_name"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={last_name => this.setState({ last_name })}
-        />
+      <ImageBackground
+        source={require("../../assets/images/bg6-min.png")}
+        style={{ flex: 1, width: "100%", height: "100%" }}
+      >
+        <View style={styles.authContainer}>
+          <Text style={styles.authTitle}>Signup</Text>
+          <TextInput
+            style={styles.authTextInput}
+            placeholder="Username"
+            onChangeText={username => this.setState({ username })}
+            placeholderTextColor="white"
+          />
+          <TextInput
+            style={styles.authTextInput}
+            placeholder="Email"
+            placeholderTextColor="white"
+            onChangeText={email => this.setState({ email })}
+          />
+          <TextInput
+            style={styles.authTextInput}
+            placeholder="Password"
+            placeholderTextColor="white"
+            onChangeText={password => this.setState({ password })}
+            secureTextEntry={true}
+          />
+          <TextInput
+            style={styles.authTextInput}
+            placeholder="First name"
+            placeholderTextColor="white"
+            onChangeText={first_name => this.setState({ first_name })}
+          />
+          <TextInput
+            style={styles.authTextInput}
+            placeholder="Last name"
+            placeholderTextColor="white"
+            onChangeText={last_name => this.setState({ last_name })}
+          />
 
-        <Picker
-          note
-          mode="dropdown"
-          style={{ width: 100 }}
-          selectedValue={this.state.gender}
-          onValueChange={this.updateGender.bind(this)}
-        >
-          <Picker.Item label="Male" value="Male" />
-          <Picker.Item label="Female" value="Female" />
-        </Picker>
+          {/* <GenderPicker
+            selectedValue={this.state.gender}
+            onValueChange={this.updateGender.bind(this)}
+          /> */}
+          <RNPickerSelect
+            style={styles.authTextInput}
+            onValueChange={gender => this.setState({ gender })}
+            items={[
+              { label: "Male", value: "Male" },
+              { label: "Female", value: "Female" }
+            ]}
+          >
+            <Text style={styles.authTextInput}>{this.state.gender}</Text>
+          </RNPickerSelect>
 
-        <TextInput
-          style={styles.authTextInput}
-          placeholder="birth_date"
-          placeholderTextColor="#A6AEC1"
-          onChangeText={birth_date => this.setState({ birth_date })}
-        />
-        {/* 
-        <DatePicker
-          minimumDate={new Date(1900, 1, 1)}
-          maximumDate={new Date(2019, 12, 31)}
-          locale={"en"}
-          timeZoneOffsetInMinutes={undefined}
-          modalTransparent={false}
-          animationType={"fade"}
-          androidMode={"default"}
-          placeHolderText="Select date"
-          textStyle={{ color: "green" }}
-          placeHolderTextStyle={{ color: "#d3d3d3" }}
-          onDateChange={birth_date => this.setState({ birth_date })}
-          disabled={false}
-        />
-        <Text>Date: {this.state.birth_date}</Text> */}
+          <DatePicker
+            style={styles.authTextInput}
+            date={this.state.date}
+            showIcon="flase"
+            mode="date"
+            placeholder="Birthday" // LAYLA LOOK HERE, PLZ
+            format="YYYY-MM-DD"
+            minDate="1980-01-01"
+            maxDate="2000-01-01"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            onChangeText={birthday => this.setState({ birthday })}
+          >
+            <Text style={styles.authTextInput}>{this.state.birthday}</Text>
+          </DatePicker>
 
-        <TouchableOpacity
-          style={styles.authButton}
-          onPress={() => authStore.signup(this.state, this.props.navigation)}
-        >
-          <Text style={styles.authButtonText}>Sign up</Text>
-        </TouchableOpacity>
-        <Text
-          style={styles.authOther}
-          onPress={() => this.props.navigation.navigate("Login")}
-        >
-          Click here to Login!
-        </Text>
-      </View>
+          <TouchableOpacity
+            style={styles.authButton}
+            onPress={() => authStore.signup(this.state, this.props.navigation)}
+          >
+            <Text style={styles.authButtonText}>Submit</Text>
+          </TouchableOpacity>
+          <Text
+            style={styles.authOther}
+            onPress={() => this.props.navigation.navigate("Login")}
+          >
+            Click here to Login!
+          </Text>
+        </View>
+      </ImageBackground>
     );
   }
 }
+console.log(this.birthday);
+console.log(this.gender);
 
 Signup.navigationOptions = {
   title: "Register"
 };
 
 export default Signup;
-
-const styles = StyleSheet.create({
-  topContainer: {
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  authContainer: {
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  middleContainer: {
-    flex: 3,
-    justifyContent: "flex-start",
-    alignItems: "center"
-  },
-  bottomContainer: {
-    justifyContent: "flex-end",
-    width: "90%",
-    margin: 20,
-    padding: 10
-  }
-});

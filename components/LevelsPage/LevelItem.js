@@ -1,9 +1,6 @@
 import React from "react";
 import { withNavigation } from "react-navigation";
-
-// NativeBase Components
-import { Card, CardItem, Text, Left, Body, Thumbnail } from "native-base";
-import { Image, ImageBackground, TouchableOpacity } from "react-native";
+import { Icon } from "native-base";
 
 const LevelItem = ({ level, navigation, thePlace }) => {
   const handlePress = () => {
@@ -16,69 +13,22 @@ const LevelItem = ({ level, navigation, thePlace }) => {
       navigation.navigate("Trivia", { TriviaID: thePlace.trivia });
     }
   };
+  const x = level.x;
+  const y = level.y;
+  console.log("x", x);
   return (
-    <ImageBackground
-      source={require("../../assets/images/black.jpg")}
-      style={{ flex: 1, width: "100%", height: "100%" }}
-    >
-      <Card style={{ flex: 0 }}>
-        <CardItem>
-          <Left>
-            <Body>
-              <Text>{level.name}</Text>
-              <Text note>{thePlace.name}@</Text>
-            </Body>
-          </Left>
-        </CardItem>
-        <CardItem>
-          <Body>
-            <TouchableOpacity onPress={handlePress}>
-              {level.id == 1 ? (
-                <Image
-                  source={level.img}
-                  style={{ opacity: 0.7, height: 230, width: 350 }}
-                />
-              ) : (
-                <ImageBackground
-                  source={require("../../assets/images/Lock.jpg")}
-                  style={{ opacity: 1, height: 240, width: 350 }}
-                >
-                  <Image
-                    source={level.img}
-                    style={{ opacity: 0.7, height: 230, width: 350 }}
-                  />
-                </ImageBackground>
-              )}
-            </TouchableOpacity>
-            <Text
-              style={{
-                textAlign: "center",
-                fontStyle: "italic",
-                fontWeight: "bold",
-                color: "#16126e"
-              }}
-            >
-              solve me to open the next level
-            </Text>
-          </Body>
-        </CardItem>
-        <CardItem>
-          <Left>
-            <Thumbnail
-              source={require("../../assets/images/fls.jpg")}
-              style={{ height: 25, width: 25 }}
-            />
-            <Body>
-              <Text
-                style={{ fontSize: 14, color: "green", fontWeight: "bold" }}
-              >
-                {level.score}
-              </Text>
-            </Body>
-          </Left>
-        </CardItem>
-      </Card>
-    </ImageBackground>
+    <Icon
+      name="location-pin"
+      type="Entypo"
+      style={{
+        left: x,
+        top: y,
+        color: "transparent",
+        position: "absolute",
+        fontSize: "90"
+      }}
+      onPress={handlePress}
+    />
   );
 };
 

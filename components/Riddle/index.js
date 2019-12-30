@@ -12,6 +12,8 @@ export default class Riddle extends Component {
       showDraggable: true,
       dropZoneValues: null,
       pan: new Animated.ValueXY(),
+      pan2: new Animated.ValueXY(),
+
       initial: "Drop me hereeeee!"
     };
 
@@ -32,6 +34,23 @@ export default class Riddle extends Component {
           });
         } else {
           Animated.spring(this.state.pan, { toValue: { x: 0, y: 0 } }).start();
+        }
+      }
+    });
+
+    this.panResponder2 = PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([
+        null,
+        {
+          dx: this.state.pan2.x,
+          dy: this.state.pan2.y
+        }
+      ]),
+      onPanResponderRelease: (e, gesture) => {
+        if (this.isDropZone(gesture)) {
+          alert("not the right answer! hehe.")
+          Animated.spring(this.state.pan, { setValue: { x: 0, y: 0 } }).start();
         }
       }
     });
@@ -72,6 +91,12 @@ export default class Riddle extends Component {
             style={[this.state.pan.getLayout(), styles.circle]}
           >
             <Text style={styles.text}>Drag me!</Text>
+          </Animated.View>
+          <Animated.View
+            {...this.panResponder2.panHandlers}
+            style={[this.state.pan2.getLayout(), styles.circle]}
+          >
+            <Text style={styles.text}>Dont Drag me!</Text>
           </Animated.View>
         </View>
       );

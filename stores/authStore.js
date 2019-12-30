@@ -4,11 +4,7 @@ import jwt_decode from "jwt-decode";
 import { instance } from "./instance";
 
 class AuthStore {
-  // user = null;
-  user = {
-    username: "",
-    password: ""
-  };
+  user = null;
 
   setUser = async token => {
     if (token) {
@@ -38,6 +34,7 @@ class AuthStore {
 
   signup = async (userData, navigation) => {
     try {
+      console.log(userData);
       const res = await instance.post("/register/", userData);
       this.login(userData, navigation);
       navigation.navigate("List");

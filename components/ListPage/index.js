@@ -14,8 +14,9 @@ class List extends Component {
     if (listStore.loading) return <Spinner />;
     return (
       <ImageBackground
-        source={require("../../assets/images/KW.png")}
+        source={require("../../assets/images/map2.png")}
         style={styles.container}
+        resizeMode="stretch"
       >
         <View style={styles.overlayContainer}>
           <View style={styles.topStyling}>{Listofplaces}</View>

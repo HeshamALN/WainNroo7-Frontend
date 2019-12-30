@@ -12,22 +12,22 @@ class LevelsStore {
     {
       id: "1",
       name: "difference",
-      lock: false,
-      img: diff,
+      x: 230,
+      y: 310,
       score: "100"
     },
     {
       id: "2",
       name: "riddle",
-      lock: true,
-      img: riddles,
+      x: 70,
+      y: 420,
       score: "150"
     },
     {
       id: "3",
       name: "trivia",
-      lock: true,
-      img: trivia,
+      x: 85,
+      y: 140,
       score: "200"
     }
   ];

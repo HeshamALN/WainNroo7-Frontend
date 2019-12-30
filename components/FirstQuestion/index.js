@@ -6,14 +6,15 @@ import {
   TouchableHighlight,
   View,
   StyleSheet,
-  Alert
+  Alert,
+  ImageBackground
 } from "react-native";
 
 class FirstQuestion extends Component {
   state = {
     modalVisible: false,
     answer: "",
-    correctAnswer: 2
+    correctAnswer: "شارع الحب"
   };
   toggleModal(visible) {
     this.setState({ modalVisible: visible });
@@ -52,32 +53,41 @@ class FirstQuestion extends Component {
             console.log("Modal has been closed.");
           }}
         >
-          <View style={styles.modal}>
-            <Text style={styles.text}> 1+1=? </Text>
+          <ImageBackground
+            source={require("../../assets/images/bg5.png")}
+            style={{ flex: 1, width: "100%", height: "100%" }}
+          >
+            <View style={styles.modal}>
+              <Text style={styles.text2}> شنو تسمون الدائري الثاني ؟</Text>
+              <Text />
+              <TextInput
+                style={{
+                  height: 50,
+                  width: 200,
+                  borderColor: "white",
+                  borderWidth: 2,
+                  color: "white",
+                  textAlign: "center",
+                  fontSize: 18
+                }}
+                onChangeText={text => this.setState({ answer: text })}
+                value={this.state.answer}
+              />
+              <Text />
 
-            <TextInput
-              style={{
-                height: 20,
-                width: 200,
-                borderColor: "black",
-                borderWidth: 1,
-                color: "black"
-              }}
-              onChangeText={text => this.setState({ answer: text })}
-              value={this.state.answer}
-            />
-
-            <TouchableHighlight onPress={this.handleQuestion}>
-              <Text style={styles.text}>Answer</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={() => {
-                this.toggleModal(!this.state.modalVisible);
-              }}
-            >
-              <Text style={styles.text}>Back</Text>
-            </TouchableHighlight>
-          </View>
+              <TouchableHighlight onPress={this.handleQuestion}>
+                <Text style={styles.text3}>Answer</Text>
+              </TouchableHighlight>
+              <Text />
+              <TouchableHighlight
+                onPress={() => {
+                  this.toggleModal(!this.state.modalVisible);
+                }}
+              >
+                <Text style={styles.text3}>Back</Text>
+              </TouchableHighlight>
+            </View>
+          </ImageBackground>
         </Modal>
 
         <TouchableHighlight
@@ -85,7 +95,7 @@ class FirstQuestion extends Component {
             this.toggleModal(true);
           }}
         >
-          <Text style={styles.text}>Play</Text>
+          <Text style={styles.text}>START</Text>
         </TouchableHighlight>
       </View>
     );
@@ -96,17 +106,37 @@ export default FirstQuestion;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: "#ede3f2",
+    backgroundColor: "transparent",
+    top: 270,
     padding: 100
   },
   modal: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#fffff0",
-    padding: 100
+    backgroundColor: "transparent",
+    padding: 100,
+    top: 155
   },
   text: {
     color: "#3f2949",
-    marginTop: 10
+    textAlign: "center",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 20
+  },
+
+  text2: {
+    color: "white",
+    textAlign: "center",
+    fontStyle: "normal",
+    fontWeight: "bold",
+    fontSize: 18
+  },
+  text3: {
+    color: "white",
+    textAlign: "center",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 18
   }
 });

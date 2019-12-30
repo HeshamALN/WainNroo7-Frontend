@@ -29,6 +29,7 @@ const { width, height } = Dimensions.get("screen");
 //     content: "Your score: /n Your score: /n Your score: /n"
 //   }
 // ];
+
 class ProfileScreen extends Component {
   async componentDidMount() {
     if (authStore.user) await profileStore.fetchProfile();
@@ -89,6 +90,22 @@ class ProfileScreen extends Component {
                     <Text size={12}>Comments</Text>
                   </Block>
                 </Block>
+      <Block flex style={styles.profile}>
+        <Block flex>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{ width, marginTop: "25%" }}
+          >
+            <Block flex style={styles.profileCard}>
+              <Block middle style={styles.avatarContainer}>
+                <Image
+                  source={
+                    ProfileStore.profile.gender == "Male"
+                      ? require("../../assets/avatars/avatar.png")
+                      : require("../../assets/avatars/avatar2.png")
+                  }
+                  style={styles.avatar}
+                />
               </Block>
               <Block flex>
                 <Block middle style={styles.nameInfo}>
@@ -143,6 +160,13 @@ class ProfileScreen extends Component {
                       <Block style={styles.divider} />
                     </Block>
                   </Block>
+
+                  <Text bold size={15} color="#32325D">
+                    Gender: {ProfileStore.profile.gender}
+                  </Text>
+                  <Text bold size={15} color="#32325D">
+                    Score: {ProfileStore.profile.total_score}
+                  </Text>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                     <Block style={styles.divider} />
                   </Block>
