@@ -1,15 +1,19 @@
 export default {
   container: {
     paddingTop: 200,
-    flex: 1
+    flex: 1,
+    backgroundColor: "#001e54",
+    color: "#fff"
   },
   navItemStyle: {
     padding: 10,
-    fontSize: 18
+    fontSize: 18,
+    color: "#fff"
   },
   navSectionStyle: {
-    backgroundColor: "white",
-    alignItems: "center"
+    backgroundColor: "#001e54",
+    alignItems: "center",
+    color: "#fff"
   },
   sectionHeadingStyle: {
     paddingVertical: 10,
@@ -17,6 +21,7 @@ export default {
   },
   footerContainer: {
     padding: 20,
-    backgroundColor: "white"
+    backgroundColor: "#001e54",
+    color: "#fff"
   }
 };
