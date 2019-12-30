@@ -35,9 +35,10 @@ class CircleItem extends Component {
             name="circle"
             type="Entypo"
             style={{
+              fontSize: 50,
               left: this.props.x,
               top: this.props.y,
-              color: "#043570",
+              color: "red",
               position: "absolute"
             }}
           />

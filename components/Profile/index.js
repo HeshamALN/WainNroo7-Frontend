@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import { ImageBackground, Image } from "react-native";
 import {
   StyleSheet,
   Container,
   Dimensions,
   ScrollView,
-  Image,
   Header,
   Left,
   Button,
@@ -154,7 +154,7 @@ class ProfileScreen extends Component {
                       </Block>
                       <Logout style={styles.logout} />
 
-                      {/* <Accordion
+ 
                   dataArray={scoreBoard}
                   icon="add"
                   expandedIcon="remove"
@@ -170,6 +170,7 @@ class ProfileScreen extends Component {
         </Container>
       );
     }
+
   }
 }
 

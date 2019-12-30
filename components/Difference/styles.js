@@ -6,14 +6,14 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     fontWeight: "bold",
     color: "white",
-    top: 60,
-    fontSize: 18
+    fontSize: 18,
+    top: 200
   },
   text2style: {
     textAlign: "center",
     color: "white",
-    top: 75,
-    fontSize: 16
+    fontSize: 16,
+    top: 100
   }
 });
 

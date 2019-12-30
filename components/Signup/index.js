@@ -34,7 +34,7 @@ class Signup extends Component {
   updateGender = gender => this.setState({ gender });
 
   componentDidMount() {
-    if (authStore.user) this.props.navigation.navigate("List");
+    // if (authStore.user) this.props.navigation.navigate("List");
   }
 
   render() {

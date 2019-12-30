@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import { ImageBackground, Alert, Text, Image } from "react-native";
+import { ImageBackground, Alert, Text, Image, View } from "react-native";
 import { Spinner } from "native-base";
 
 //stores
 import differenceStore from "../../stores/differenceStore";
+import profileStore from "../../stores/profileStore";
 
 //items
 import CircleItem from "./CircleItem";
@@ -13,9 +14,32 @@ import CircleItem from "./CircleItem";
 import styles from "./styles";
 
 class Difference extends Component {
+  state = {
+    seconds: 15,
+    totalScore: 0,
+    theDiff: null
+  };
+  dec = () => {
+    if (this.state.seconds > 0)
+      this.setState({ seconds: this.state.seconds - 1 });
+  };
+
+  // resetFields = () => {
+  //   this.setState({});
+  // };
+
   componentDidMount() {
+    this.setState({ seconds: 15 });
+    differenceStore.diffcounter = 0;
+    this.interval = setInterval(this.dec, 1000);
     const DifferenceID = this.props.navigation.getParam("DifferenceID");
     differenceStore.fetchAllDifferences(DifferenceID);
+  }
+  componentDidUpdate() {
+    if (this.state.seconds === 0) {
+      clearInterval(this.interval);
+      this.props.navigation.navigate("Timeout");
+    }
   }
 
   render() {
@@ -24,29 +48,44 @@ class Difference extends Component {
       <CircleItem
         x={circle.xcoordinate}
         y={circle.ycoordinate}
-        key={circle.id}
+        key={`${circle.xcoordinate} ${circle.ycoordinate}`}
       />
     ));
     if (differenceStore.differences.diffs === differenceStore.diffcounter) {
-      Alert.alert("Congratulations", "You Have Won !!", [{ text: "Yaay" }]);
+      clearInterval(this.interval);
+      this.props.navigation.navigate("WinGame");
+      profileStore.updateTotalScore(50);
+      console.log("diff profile score :", profileStore.profile.total_score);
     }
     return (
       <ImageBackground
-        source={require("../../assets/images/bkgd4.jpg")}
+        source={require("../../assets/images/bg5.png")}
         style={{ flex: 1, width: "100%", height: "100%" }}
       >
-        <Text style={styles.text1style}>
-          Spot the differences between this picture and the actual view
-        </Text>
+        <View style={{ flexDirection: "row", alignSelf: "center", top: 50 }}>
+          <Image
+            source={require("../../assets/images/timer.png")}
+            style={{ width: 70, height: 70, alignSelf: "center" }}
+          />
+          <Text
+            style={{
+              color: "white",
+              alignSelf: "center",
+              fontSize: 50
+            }}
+          >
+            {this.state.seconds}
+          </Text>
+        </View>
+        <Image
+          source={{ uri: differenceStore.differences.img }}
+          style={{ width: "88%", height: "66%", alignSelf: "center", top: 70 }}
+        />
+        {Circles}
         <Text style={styles.text2style}>
           You have spoted : {differenceStore.diffcounter}/
           {differenceStore.differences.diffs}
         </Text>
-        <Image
-          source={{ uri: differenceStore.differences.img }}
-          style={{ width: "99%", height: "77%", left: 2, right: 3, top: 85 }}
-        />
-        {Circles}
       </ImageBackground>
     );
   }
