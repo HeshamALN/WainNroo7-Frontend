@@ -34,6 +34,7 @@ class AuthStore {
 
   signup = async (userData, navigation) => {
     try {
+      console.log(userData);
       const res = await instance.post("/register/", userData);
       this.login(userData, navigation);
       navigation.navigate("List");

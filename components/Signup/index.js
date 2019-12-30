@@ -28,10 +28,9 @@ class Signup extends Component {
     last_name: "",
     email: "",
     gender: "Gender",
-    birth_date: "0000-00-00",
-    showDatePicker: false
+    birthday: "1992-05-03"
   };
-  onChange = birth_date => this.setState({ birth_date });
+  onChange = birthday => this.setState({ birthday });
   updateGender = gender => this.setState({ gender });
 
   componentDidMount() {
@@ -40,7 +39,7 @@ class Signup extends Component {
 
   render() {
     const { showDatePicker } = this.state;
-    const { birth_date } = this.state;
+    const { birthday } = this.state;
 
     return (
       <ImageBackground
@@ -107,9 +106,9 @@ class Signup extends Component {
             maxDate="2000-01-01"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
-            onChangeText={birth_date => this.setState({ birth_date })}
+            onChangeText={birthday => this.setState({ birthday })}
           >
-            <Text style={styles.authTextInput}>{this.state.birth_date}</Text>
+            <Text style={styles.authTextInput}>{this.state.birthday}</Text>
           </DatePicker>
 
           <TouchableOpacity
@@ -129,6 +128,8 @@ class Signup extends Component {
     );
   }
 }
+console.log(this.birthday);
+console.log(this.gender);
 
 Signup.navigationOptions = {
   title: "Register"
