@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import { ImageBackground, Image } from "react-native";
 import {
   StyleSheet,
   Dimensions,
   ScrollView,
-  Image,
   Header,
   Left,
   Button,
@@ -37,6 +37,59 @@ class ProfileScreen extends Component {
 
   render() {
     return (
+      <ImageBackground
+        source={require("../../assets/images/bg6.png")}
+        style={{ flex: 1, width: "100%", height: "100%" }}
+      >
+        <Block flex style={styles.profile}>
+          <Block flex>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ width, marginTop: "25%" }}
+            >
+              <Block flex style={styles.profileCard}>
+                <Block middle style={styles.avatarContainer}>
+                  <Image
+                    source={require("../../assets/avatars/avatar.png")}
+                    style={styles.avatar}
+                  />
+                </Block>
+                <Block style={styles.info}></Block>
+                <Block row space="between">
+                  <Block middle>
+                    <Text
+                      bold
+                      size={12}
+                      color="#525F7F"
+                      style={{ marginBottom: 4 }}
+                    >
+                      2K
+                    </Text>
+                    <Text size={12}>Orders</Text>
+                  </Block>
+                  <Block middle>
+                    <Text
+                      bold
+                      color="#525F7F"
+                      size={12}
+                      style={{ marginBottom: 4 }}
+                    >
+                      10
+                    </Text>
+                    <Text size={12}>Photos</Text>
+                  </Block>
+                  <Block middle>
+                    <Text
+                      bold
+                      color="#525F7F"
+                      size={12}
+                      style={{ marginBottom: 4 }}
+                    >
+                      89
+                    </Text>
+                    <Text size={12}>Comments</Text>
+                  </Block>
+                </Block>
       <Block flex style={styles.profile}>
         <Block flex>
           <ScrollView
@@ -54,85 +107,60 @@ class ProfileScreen extends Component {
                   style={styles.avatar}
                 />
               </Block>
-              <Block style={styles.info}></Block>
-              <Block row space="between">
-                <Block middle>
-                  <Text
-                    bold
-                    size={12}
-                    color="#525F7F"
-                    style={{ marginBottom: 4 }}
-                  >
-                    2K
+              <Block flex>
+                <Block middle style={styles.nameInfo}>
+                  <Text bold size={28} color="#32325D">
+                    {ProfileStore.profile.username}, {ProfileStore.age}
                   </Text>
-                  <Text size={12}>Orders</Text>
                 </Block>
-                <Block middle>
-                  <Text
-                    bold
-                    color="#525F7F"
-                    size={12}
-                    style={{ marginBottom: 4 }}
-                  >
-                    10
-                  </Text>
-                  <Text size={12}>Photos</Text>
-                </Block>
-                <Block middle>
-                  <Text
-                    bold
-                    color="#525F7F"
-                    size={12}
-                    style={{ marginBottom: 4 }}
-                  >
-                    89
-                  </Text>
-                  <Text size={12}>Comments</Text>
-                </Block>
-              </Block>
-            </Block>
-            <Block flex>
-              <Block middle style={styles.nameInfo}>
-                <Text bold size={28} color="#32325D">
-                  {ProfileStore.profile.username}, {ProfileStore.age}
-                </Text>
-              </Block>
-              <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                <Block style={styles.divider} />
-              </Block>
-              <Block middle>
-                <Text size={16} color="#525F7F" style={{ textAlign: "center" }}>
-                  About About About About About About About About About About
-                </Text>
                 <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                   <Block style={styles.divider} />
                 </Block>
-                <Block middle style={styles.infoInfo}>
-                  <Text bold size={15} color="#32325D">
-                    First Name: {ProfileStore.profile.first_name}
+                <Block middle>
+                  <Text
+                    size={16}
+                    color="#525F7F"
+                    style={{ textAlign: "center" }}
+                  >
+                    About About About About About About About About About About
                   </Text>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                     <Block style={styles.divider} />
                   </Block>
-                  <Text bold size={15} color="#32325D">
-                    Last Name: {ProfileStore.profile.last_name}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
+                  <Block middle style={styles.infoInfo}>
+                    <Text bold size={15} color="#32325D">
+                      First Name: {ProfileStore.profile.first_name}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Text bold size={15} color="#32325D">
+                      Last Name: {ProfileStore.profile.last_name}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Text bold size={15} color="#32325D">
+                      email: {ProfileStore.profile.email}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Text bold size={15} color="#32325D">
+                      Date of birth: {ProfileStore.profile.birth_day}
+                      {/* Age: {getAge} */}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Text bold size={15} color="#32325D">
+                      Gender: {ProfileStore.profile.gender}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
                   </Block>
-                  <Text bold size={15} color="#32325D">
-                    email: {ProfileStore.profile.email}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
-                  <Text bold size={15} color="#32325D">
-                    Date of birth: {ProfileStore.profile.birth_day}
-                    {/* Age: {getAge} */}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
+
                   <Text bold size={15} color="#32325D">
                     Gender: {ProfileStore.profile.gender}
                   </Text>
@@ -142,24 +170,21 @@ class ProfileScreen extends Component {
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                     <Block style={styles.divider} />
                   </Block>
-                </Block>
-                <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                  <Block style={styles.divider} />
-                </Block>
 
-                {/* <Accordion
+                  {/* <Accordion
                   dataArray={scoreBoard}
                   icon="add"
                   expandedIcon="remove"
                   iconStyle={{ color: "green" }}
                   expandedIconStyle={{ color: "red" }}
                 /> */}
+                </Block>
               </Block>
-            </Block>
-            <Logout style={styles.logout} />
-          </ScrollView>
+              <Logout style={styles.logout} />
+            </ScrollView>
+          </Block>
         </Block>
-      </Block>
+      </ImageBackground>
     );
   }
 }
