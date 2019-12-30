@@ -7,6 +7,9 @@ const Pins = ({ place, navigation }) => {
     navigation.navigate("Levels", { placeID: place.id, placeName: place.name });
   const x = place.xcoordinate;
   const y = place.ycoordinate;
+  console.log("x", x);
+  console.log("y", y);
+
   return (
     <Icon
       name="location-pin"
@@ -14,7 +17,7 @@ const Pins = ({ place, navigation }) => {
       style={{
         left: x,
         top: y,
-        color: "red",
+        color: "transparent",
         position: "absolute"
       }}
       onPress={handlePress}
