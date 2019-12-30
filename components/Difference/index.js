@@ -51,6 +51,7 @@ class Difference extends Component {
       />
     ));
     if (differenceStore.differences.diffs === differenceStore.diffcounter) {
+      clearInterval(this.interval);
       Alert.alert("Congratulations", "You Have Won !!", [{ text: "Yaay" }]);
     }
     return (

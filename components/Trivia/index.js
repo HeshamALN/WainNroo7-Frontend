@@ -40,7 +40,7 @@ class Trivia extends Component {
   componentDidMount() {
     const TriviaID = this.props.navigation.getParam("TriviaID");
     triviaStore.fetchAllData(TriviaID);
-    this.setState({ choice: 0, seconds: 3 });
+    this.setState({ choice: 0, seconds: 20 });
     this.interval = setInterval(this.dec, 1000);
   }
 
@@ -113,10 +113,7 @@ class Trivia extends Component {
                       }}
                     >
                       {triviaStore.data.questions[choicee].answers.map(ans => (
-                        <ListItem
-                          style={{ alignSelf: "center" }}
-                          key={ans.answer}
-                        >
+                        <ListItem style={{ alignSelf: "center" }}>
                           <Button
                             rounded
                             bordered
@@ -156,57 +153,73 @@ class Trivia extends Component {
     } else
       return (
         <Container>
-          <ImageBackground
-            source={require("../../assets/images/bg5.png")}
-            style={styles.container}
-          >
-            <Content style={{ top: 70, alignSelf: "center" }}>
-              {clearInterval(this.interval)}
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  fontSize: 20
-                }}
-              >{`UR Total Score : ${this.state.totalScore}`}</Text>
-              {this.state.totalScore === 60 ? (
-                <H1
+          {this.state.totalScore === 60 ? (
+            <ImageBackground
+              source={require("../../assets/images/won.png")}
+              style={styles.container}
+            >
+              <Content style={{ top: 70, alignSelf: "center" }}>
+                {clearInterval(this.interval)}
+                <Text
                   style={{
                     color: "white",
-                    alignSelf: "center",
-                    top: 200
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    top: 450,
+                    fontSize: 20
+                  }}
+                >{`Your Total Score : ${this.state.totalScore}`}</Text>
+                <Button
+                  rounded
+                  bordered
+                  light
+                  large
+                  onPress={() => this.props.navigation.navigate("List")}
+                  style={{
+                    top: 470,
+                    fontSize: 50,
+                    color: "white",
+                    alignSelf: "center"
                   }}
                 >
-                  You Won !
-                </H1>
-              ) : (
-                <H1
+                  <Text style={{ color: "white" }}>Go Back !</Text>
+                </Button>
+              </Content>
+            </ImageBackground>
+          ) : (
+            <ImageBackground
+              source={require("../../assets/images/lost.png")}
+              style={styles.container}
+            >
+              <Content style={{ top: 70, alignSelf: "center" }}>
+                {clearInterval(this.interval)}
+                <Text
                   style={{
                     color: "white",
-                    alignSelf: "center",
-                    top: 200
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    top: 400,
+                    fontSize: 20
+                  }}
+                >{`Your Total Score : ${this.state.totalScore}`}</Text>
+                <Button
+                  rounded
+                  bordered
+                  light
+                  large
+                  onPress={() => this.props.navigation.navigate("List")}
+                  style={{
+                    top: 450,
+                    fontSize: 50,
+                    color: "white",
+                    alignSelf: "center"
                   }}
                 >
-                  L O S E R ! !
-                </H1>
-              )}
-              <Button
-                rounded
-                bordered
-                light
-                large
-                onPress={() => this.props.navigation.navigate("List")}
-                style={{
-                  top: 250,
-                  fontSize: 50,
-                  color: "white",
-                  alignSelf: "center"
-                }}
-              >
-                <Text style={{ color: "white" }}>Go Back !</Text>
-              </Button>
-            </Content>
-          </ImageBackground>
+                  <Text style={{ color: "white" }}>Go Back !</Text>
+                </Button>
+              </Content>
+            </ImageBackground>
+          )}
         </Container>
       );
   }

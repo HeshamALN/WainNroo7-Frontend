@@ -15,12 +15,12 @@ import Timeout from "../components/Timeout";
 
 const HomeStack = createStackNavigator(
   {
+    ProfileScreen: ProfileScreen,
     List: ListPage,
     Trivia: Trivia,
     Riddle: RiddlePage,
     Signup: Signup,
     FirstQuestion: FirstQuestion,
-    ProfileScreen: ProfileScreen,
     Login: Login,
     LandingPageScreen: LandingPageScreen,
     Levels: LevelsPage,
