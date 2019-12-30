@@ -4,15 +4,7 @@ import { instance } from "./instance";
 class ProfileStore {
   loading = true;
 
-  profile = {
-    first_name: "farah",
-    last_name: "alkhaldi",
-    username: "farah123",
-    email: "farah123@outlook.com",
-    gender: "Female",
-    birth_day: "4/12/1994",
-    total_score: 0
-  };
+  profile = [];
 
   age = null;
 
@@ -20,6 +12,7 @@ class ProfileStore {
     try {
       const res = await instance.get("/profile/");
       this.profile = res.data;
+      console.log("el profile", this.profile);
       this.loading = false;
     } catch (err) {
       console.error(err);
@@ -45,7 +38,8 @@ class ProfileStore {
 
 decorate(ProfileStore, {
   profile: observable,
-  loading: observable
+  loading: observable,
+  age: observable
 });
 
 const profileStore = new ProfileStore();

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import {
   StyleSheet,
+  Container,
   Dimensions,
   ScrollView,
   Image,
@@ -12,14 +13,16 @@ import {
   Container,
   Body,
   Title,
-  Right
+  Right,
+  ImageBackground
 } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import Logout from "../Logout/index";
+import { Spinner } from "native-base";
 
 //stores
 import authStore from "../../stores/authStore";
-import ProfileStore from "../../stores/profileStore";
+import profileStore from "../../stores/profileStore";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -36,131 +39,137 @@ class ProfileScreen extends Component {
   }
 
   render() {
-    return (
-      <Block flex style={styles.profile}>
-        <Block flex>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            style={{ width, marginTop: "25%" }}
-          >
-            <Block flex style={styles.profileCard}>
-              <Block middle style={styles.avatarContainer}>
-                <Image
-                  source={
-                    ProfileStore.profile.gender == "Male"
-                      ? require("../../assets/avatars/avatar.png")
-                      : require("../../assets/avatars/avatar2.png")
-                  }
-                  style={styles.avatar}
-                />
-              </Block>
-              <Block style={styles.info}></Block>
-              <Block row space="between">
-                <Block middle>
-                  <Text
-                    bold
-                    size={12}
-                    color="#525F7F"
-                    style={{ marginBottom: 4 }}
-                  >
-                    2K
-                  </Text>
-                  <Text size={12}>Orders</Text>
-                </Block>
-                <Block middle>
-                  <Text
-                    bold
-                    color="#525F7F"
-                    size={12}
-                    style={{ marginBottom: 4 }}
-                  >
-                    10
-                  </Text>
-                  <Text size={12}>Photos</Text>
-                </Block>
-                <Block middle>
-                  <Text
-                    bold
-                    color="#525F7F"
-                    size={12}
-                    style={{ marginBottom: 4 }}
-                  >
-                    89
-                  </Text>
-                  <Text size={12}>Comments</Text>
-                </Block>
-              </Block>
-            </Block>
-            <Block flex>
-              <Block middle style={styles.nameInfo}>
-                <Text bold size={28} color="#32325D">
-                  {ProfileStore.profile.username}, {ProfileStore.age}
-                </Text>
-              </Block>
-              <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                <Block style={styles.divider} />
-              </Block>
-              <Block middle>
-                <Text size={16} color="#525F7F" style={{ textAlign: "center" }}>
-                  About About About About About About About About About About
-                </Text>
-                <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                  <Block style={styles.divider} />
-                </Block>
-                <Block middle style={styles.infoInfo}>
-                  <Text bold size={15} color="#32325D">
-                    First Name: {ProfileStore.profile.first_name}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
+    if (profileStore.loading) return <Spinner />;
+    {
+      return (
+        <Container>
+          <ImageBackground sourece={require("../../assets/images/bg5.png")}>
+            <Block flex style={styles.profile}>
+              <Block flex>
+                <ScrollView
+                  showsVerticalScrollIndicator={false}
+                  style={{ width, marginTop: "25%" }}
+                >
+                  <Block flex style={styles.profileCard}>
+                    <Block middle style={styles.avatarContainer}>
+                      <Image
+                        source={
+                          profileStore.profile.gender == "Male"
+                            ? require("../../assets/avatars/avatar.png")
+                            : require("../../assets/avatars/avatar2.png")
+                        }
+                        style={styles.avatar}
+                      />
+                    </Block>
+                    <Block style={styles.info}></Block>
+                    <Block row space="between">
+                      <Block middle>
+                        <Text
+                          bold
+                          size={12}
+                          color="#525F7F"
+                          style={{ marginBottom: 4 }}
+                        ></Text>
+                        <Text size={12}></Text>
+                      </Block>
+                      <Block middle>
+                        <Text
+                          bold
+                          color="#525F7F"
+                          size={12}
+                          style={{ marginBottom: 4 }}
+                        ></Text>
+                        <Text size={40}>
+                          {profileStore.profile.user.username}
+                        </Text>
+                      </Block>
+                      <Block middle>
+                        <Text
+                          bold
+                          color="#525F7F"
+                          size={12}
+                          style={{ marginBottom: 4 }}
+                        ></Text>
+                        <Text size={12}></Text>
+                      </Block>
+                    </Block>
                   </Block>
-                  <Text bold size={15} color="#32325D">
-                    Last Name: {ProfileStore.profile.last_name}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
-                  <Text bold size={15} color="#32325D">
-                    email: {ProfileStore.profile.email}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
-                  <Text bold size={15} color="#32325D">
-                    Date of birth: {ProfileStore.profile.birth_day}
-                    {/* Age: {getAge} */}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
-                  <Text bold size={15} color="#32325D">
-                    Gender: {ProfileStore.profile.gender}
-                  </Text>
-                  <Text bold size={15} color="#32325D">
-                    Score: {ProfileStore.profile.total_score}
-                  </Text>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
-                </Block>
-                <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                  <Block style={styles.divider} />
-                </Block>
+                  <Block flex>
+                    <Block middle style={{ marginTop: 10, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Block middle>
+                      <Block middle style={{ marginBottom: 16 }}>
+                        <Block style={styles.divider} />
+                      </Block>
+                      <Block middle style={styles.infoInfo}>
+                        <Text bold size={15} color="#32325D">
+                          First Name: {profileStore.profile.user.first_name}
+                        </Text>
+                        <Block
+                          middle
+                          style={{ marginTop: 30, marginBottom: 16 }}
+                        >
+                          <Block style={styles.divider} />
+                        </Block>
+                        <Text bold size={15} color="#32325D">
+                          Last Name: {profileStore.profile.user.last_name}
+                        </Text>
+                        <Block
+                          middle
+                          style={{ marginTop: 30, marginBottom: 16 }}
+                        >
+                          <Block style={styles.divider} />
+                        </Block>
+                        <Text bold size={15} color="#32325D">
+                          email: {profileStore.profile.user.email}
+                        </Text>
+                        <Block
+                          middle
+                          style={{ marginTop: 30, marginBottom: 16 }}
+                        >
+                          <Block style={styles.divider} />
+                        </Block>
+                        <Text bold size={15} color="#32325D">
+                          Date of birth: {profileStore.profile.birthday}
+                        </Text>
+                        <Block
+                          middle
+                          style={{ marginTop: 30, marginBottom: 16 }}
+                        >
+                          <Block style={styles.divider} />
+                        </Block>
+                        <Text bold size={15} color="#32325D">
+                          Score: {profileStore.profile.total_score}
+                        </Text>
+                        <Block
+                          middle
+                          style={{ marginTop: 30, marginBottom: 16 }}
+                        >
+                          <Block style={styles.divider} />
+                        </Block>
+                      </Block>
+                      <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                        <Block style={styles.divider} />
+                      </Block>
+                      <Logout style={styles.logout} />
 
-                {/* <Accordion
+                      {/* <Accordion
                   dataArray={scoreBoard}
                   icon="add"
                   expandedIcon="remove"
                   iconStyle={{ color: "green" }}
                   expandedIconStyle={{ color: "red" }}
                 /> */}
+                    </Block>
+                  </Block>
+                </ScrollView>
               </Block>
             </Block>
-            <Logout style={styles.logout} />
-          </ScrollView>
-        </Block>
-      </Block>
-    );
+          </ImageBackground>
+        </Container>
+      );
+    }
   }
 }
 
@@ -180,7 +189,8 @@ const styles = StyleSheet.create({
   },
   profileBackground: {
     width: width,
-    height: height / 2
+    height: height / 2,
+    backgroundColor: "#001e54"
   },
   profileCard: {
     // position: "relative",
@@ -213,8 +223,11 @@ const styles = StyleSheet.create({
     marginTop: 35
   },
   infoInfo: {
-    marginRight: 300
-    // marginTop: 90
+    justifyContent: "flex-end",
+    // marginRight: 300,
+    textAlign: "left",
+    flex: 1,
+    marginTop: 30
   },
   divider: {
     width: "90%",

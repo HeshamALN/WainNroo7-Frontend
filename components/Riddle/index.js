@@ -1,105 +1,55 @@
 import React, { Component } from "react";
-import { View, Text, Animated, PanResponder } from "react-native";
+import { StyleSheet, View, Text, PanResponder, Animated } from "react-native";
 
-//styles
-import styles from "./styles";
+import Draggable from "./Draggable";
 
 export default class Riddle extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showDraggable: true,
-      dropZoneValues: null,
-      pan: new Animated.ValueXY(),
-      pan2: new Animated.ValueXY(),
-
-      initial: "Drop me hereeeee!"
-    };
-
-    this.panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([
-        null,
-        {
-          dx: this.state.pan.x,
-          dy: this.state.pan.y
-        }
-      ]),
-      onPanResponderRelease: (e, gesture) => {
-        if (this.isDropZone(gesture)) {
-          this.setState({
-            showDraggable: false,
-            initial: "you have dropped me"
-          });
-        } else {
-          Animated.spring(this.state.pan, { toValue: { x: 0, y: 0 } }).start();
-        }
-      }
-    });
-
-    this.panResponder2 = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([
-        null,
-        {
-          dx: this.state.pan2.x,
-          dy: this.state.pan2.y
-        }
-      ]),
-      onPanResponderRelease: (e, gesture) => {
-        if (this.isDropZone(gesture)) {
-          alert("not the right answer! hehe.")
-          Animated.spring(this.state.pan, { setValue: { x: 0, y: 0 } }).start();
-        }
-      }
-    });
-  }
-
-  isDropZone(gesture) {
-    var dz = this.state.dropZoneValues;
-    return gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height;
-  }
-
-  setDropZoneValues(event) {
-    this.setState({
-      dropZoneValues: event.nativeEvent.layout
-    });
-  }
-
+  state = {
+    initial: "sssssssssssss"
+  };
   render() {
     return (
       <View style={styles.mainContainer}>
-        <View
-          onLayout={this.setDropZoneValues.bind(this)}
-          style={styles.dropZone}
-        >
+        <View style={styles.dropZone}>
           <Text style={styles.text}>{this.state.initial}</Text>
         </View>
-
-        {this.renderDraggable()}
+        <View style={styles.ballContainer} />
+        <View style={styles.row}>
+          <Draggable />
+        </View>
       </View>
     );
   }
-
-  renderDraggable() {
-    if (this.state.showDraggable) {
-      return (
-        <View style={styles.draggableContainer}>
-          <Animated.View
-            {...this.panResponder.panHandlers}
-            style={[this.state.pan.getLayout(), styles.circle]}
-          >
-            <Text style={styles.text}>Drag me!</Text>
-          </Animated.View>
-          <Animated.View
-            {...this.panResponder2.panHandlers}
-            style={[this.state.pan2.getLayout(), styles.circle]}
-          >
-            <Text style={styles.text}>Dont Drag me!</Text>
-          </Animated.View>
-        </View>
-      );
-    }
-  }
 }
+
+let CIRCLE_RADIUS = 30;
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1
+  },
+  ballContainer: {
+    height: 200
+  },
+  circle: {
+    backgroundColor: "skyblue",
+    width: CIRCLE_RADIUS * 2,
+    height: CIRCLE_RADIUS * 2,
+    borderRadius: CIRCLE_RADIUS
+  },
+  row: {
+    flexDirection: "row"
+  },
+  dropZone: {
+    height: 200,
+    backgroundColor: "#00334d"
+  },
+  text: {
+    marginTop: 80,
+    marginLeft: 5,
+    marginRight: 5,
+    textAlign: "center",
+    color: "#fff",
+    fontSize: 25,
+    fontWeight: "bold"
+  }
+});

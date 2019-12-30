@@ -28,9 +28,9 @@ class Signup extends Component {
     last_name: "",
     email: "",
     gender: "Gender",
-    birthday: "1992-05-03"
+    birthday: "2016-05-15"
   };
-  onChange = birthday => this.setState({ birthday });
+  // onChange = birthday => this.setState({ birthday });
   updateGender = gender => this.setState({ gender });
 
   componentDidMount() {
@@ -38,9 +38,6 @@ class Signup extends Component {
   }
 
   render() {
-    const { showDatePicker } = this.state;
-    const { birthday } = this.state;
-
     return (
       <ImageBackground
         source={require("../../assets/images/bg6-min.png")}
@@ -96,8 +93,7 @@ class Signup extends Component {
           </RNPickerSelect>
 
           <DatePicker
-            style={styles.authTextInput}
-            date={this.state.date}
+            date={this.state.birthday}
             showIcon="flase"
             mode="date"
             placeholder="Birthday" // LAYLA LOOK HERE, PLZ
@@ -106,10 +102,23 @@ class Signup extends Component {
             maxDate="2000-01-01"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
-            onChangeText={birthday => this.setState({ birthday })}
-          >
-            <Text style={styles.authTextInput}>{this.state.birthday}</Text>
-          </DatePicker>
+            customStyles={{
+              dateIcon: {
+                left: -1000
+              },
+              dateText: {
+                color: "white",
+                borderBottomColor: "white",
+                borderBottomWidth: 1
+              },
+              dateTouchBody: {
+                textAlign: "left"
+              }
+            }}
+            onDateChange={birthday => {
+              this.setState({ birthday: birthday });
+            }}
+          />
 
           <TouchableOpacity
             style={styles.authButton}
