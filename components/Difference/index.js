@@ -5,6 +5,7 @@ import { Spinner } from "native-base";
 
 //stores
 import differenceStore from "../../stores/differenceStore";
+import profileStore from "../../stores/profileStore";
 
 //items
 import CircleItem from "./CircleItem";
@@ -52,7 +53,9 @@ class Difference extends Component {
     ));
     if (differenceStore.differences.diffs === differenceStore.diffcounter) {
       clearInterval(this.interval);
-      Alert.alert("Congratulations", "You Have Won !!", [{ text: "Yaay" }]);
+      this.props.navigation.navigate("WinGame");
+      profileStore.updateTotalScore(50);
+      console.log("diff profile score :", profileStore.profile.total_score);
     }
     return (
       <ImageBackground

@@ -41,7 +41,7 @@ class ProfileScreen extends Component {
         source={require("../../assets/images/bg6.png")}
         style={{ flex: 1, width: "100%", height: "100%" }}
       >
-        <Block flex style={styles.profile}>
+        {/* <Block flex style={styles.profile}>
           <Block flex>
             <ScrollView
               showsVerticalScrollIndicator={false}
@@ -149,7 +149,7 @@ class ProfileScreen extends Component {
                     <Text bold size={15} color="#32325D">
                       Date of birth: {ProfileStore.profile.birth_day}
                       {/* Age: {getAge} */}
-                    </Text>
+        {/* </Text>
                     <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                       <Block style={styles.divider} />
                     </Block>
@@ -159,9 +159,8 @@ class ProfileScreen extends Component {
                     <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                       <Block style={styles.divider} />
                     </Block>
-                  </Block>
-
-                  <Text bold size={15} color="#32325D">
+                  </Block> */}
+        {/* <Text bold size={15} color="#32325D">
                     Gender: {ProfileStore.profile.gender}
                   </Text>
                   <Text bold size={15} color="#32325D">
@@ -169,21 +168,21 @@ class ProfileScreen extends Component {
                   </Text>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                     <Block style={styles.divider} />
-                  </Block>
-
-                  {/* <Accordion
+                  </Block> */}
+        {/* <Accordion
                   dataArray={scoreBoard}
                   icon="add"
                   expandedIcon="remove"
                   iconStyle={{ color: "green" }}
                   expandedIconStyle={{ color: "red" }}
                 /> */}
-                </Block>
+        {/* </Block>
               </Block>
               <Logout style={styles.logout} />
             </ScrollView>
           </Block>
-        </Block>
+        </Block> */}{" "}
+        */}
       </ImageBackground>
     );
   }

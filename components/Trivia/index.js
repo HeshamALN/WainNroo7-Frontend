@@ -17,6 +17,8 @@ import {
 //stores
 import triviaStore from "../../stores/triviaStore";
 import styles from "../ListPage/styles";
+import ProfileStore from "../../stores/profileStore";
+import profileStore from "../../stores/profileStore";
 
 //components
 
@@ -160,6 +162,11 @@ class Trivia extends Component {
             >
               <Content style={{ top: 70, alignSelf: "center" }}>
                 {clearInterval(this.interval)}
+                {profileStore.updateTotalScore(this.state.totalScore)}
+                {console.log(
+                  "Profile Score:",
+                  profileStore.profile.total_score
+                )}
                 <Text
                   style={{
                     color: "white",

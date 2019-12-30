@@ -12,11 +12,13 @@ import DifferencePage from "../components/Difference";
 import Trivia from "../components/Trivia";
 import RiddlePage from "../components/Riddle";
 import Timeout from "../components/Timeout";
+import WinGame from "../components/WinGame";
 
 const HomeStack = createStackNavigator(
   {
-    ProfileScreen: ProfileScreen,
+    WinGame: WinGame,
     List: ListPage,
+    ProfileScreen: ProfileScreen,
     Trivia: Trivia,
     Riddle: RiddlePage,
     Signup: Signup,
