@@ -1,21 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { ImageBackground, Image } from "react-native";
-import {
-  StyleSheet,
-  Container,
-  Dimensions,
-  ScrollView,
-  Header,
-  Left,
-  Button,
-  Icon,
-  Container,
-  Body,
-  Title,
-  Right,
-  ImageBackground
-} from "react-native";
+import { StyleSheet, Container, Dimensions, ScrollView } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import Logout from "../Logout/index";
 import { Spinner } from "native-base";
@@ -153,14 +139,6 @@ class ProfileScreen extends Component {
                         <Block style={styles.divider} />
                       </Block>
                       <Logout style={styles.logout} />
-
- 
-                  dataArray={scoreBoard}
-                  icon="add"
-                  expandedIcon="remove"
-                  iconStyle={{ color: "green" }}
-                  expandedIconStyle={{ color: "red" }}
-                /> */}
                     </Block>
                   </Block>
                 </ScrollView>
@@ -170,7 +148,6 @@ class ProfileScreen extends Component {
         </Container>
       );
     }
-
   }
 }
 

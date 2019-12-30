@@ -11,23 +11,16 @@ import LevelsPage from "../components/LevelsPage";
 import DifferencePage from "../components/Difference";
 import Trivia from "../components/Trivia";
 import RiddlePage from "../components/Riddle";
-import Timeout from "../components/Timeout";
 import WinGame from "../components/WinGame";
 
 const HomeStack = createStackNavigator(
   {
-    WinGame: WinGame,
     List: ListPage,
-    ProfileScreen: ProfileScreen,
-    Trivia: Trivia,
-    Riddle: RiddlePage,
-    Signup: Signup,
-    FirstQuestion: FirstQuestion,
-    Login: Login,
-    LandingPageScreen: LandingPageScreen,
     Levels: LevelsPage,
     Difference: DifferencePage,
-    Timeout: Timeout
+    Trivia: Trivia,
+    Riddle: RiddlePage,
+    Win: WinGame
   },
   {
     defaultNavigationOptions: {

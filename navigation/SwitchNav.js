@@ -7,12 +7,9 @@ import Signup from "../components/Signup";
 import FirstQuestion from "../components/FirstQuestion";
 import HomeStack from "./HomeStack";
 import DrawerNav from "./DrawerNav";
-// import RiddlePage from "../components/Riddle";
 
 const SwitchNav = createSwitchNavigator(
   {
-    // Riddle: RiddlePage,
-
     LandingPageScreen: LandingPageScreen,
     FirstQuestion: FirstQuestion,
     Login: Login,
