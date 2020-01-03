@@ -9,14 +9,8 @@ import { StyleSheet } from "react-native";
 import AuthStore from "../../stores/authStore";
 const Logout = ({ navigation }) => {
   return (
-    <Button
-      danger
-      rounded
-      bordered
-      Light
-      onPress={() => AuthStore.logout(navigation)}
-    >
-      <Text style={styles.logout}>Logout</Text>
+    <Button danger rounded Light onPress={() => AuthStore.logout(navigation)}>
+      <Text style={styles.logout}> Logout</Text>
     </Button>
   );
 };
@@ -24,6 +18,7 @@ export default withNavigation(Logout);
 
 const styles = StyleSheet.create({
   logout: {
-    color: "black"
+    color: "white",
+    textAlign: "center"
   }
 });

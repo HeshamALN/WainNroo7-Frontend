@@ -12,6 +12,8 @@ import DifferencePage from "../components/Difference";
 import Trivia from "../components/Trivia";
 import RiddlePage from "../components/Riddle";
 import WinGame from "../components/WinGame";
+import Timeout from "../components/Timeout";
+import DrawerNav from "../components/CustomDrawer";
 
 const HomeStack = createStackNavigator(
   {
@@ -20,7 +22,9 @@ const HomeStack = createStackNavigator(
     Difference: DifferencePage,
     Trivia: Trivia,
     Riddle: RiddlePage,
-    Win: WinGame
+    WinGame: WinGame,
+    Timeout: Timeout,
+    DrawerNav: DrawerNav
   },
   {
     defaultNavigationOptions: {

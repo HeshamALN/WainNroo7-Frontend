@@ -29,7 +29,7 @@ class Difference extends Component {
   // };
 
   componentDidMount() {
-    this.setState({ seconds: 15 });
+    this.setState({ seconds: 40 });
     differenceStore.diffcounter = 0;
     this.interval = setInterval(this.dec, 1000);
     const DifferenceID = this.props.navigation.getParam("DifferenceID");

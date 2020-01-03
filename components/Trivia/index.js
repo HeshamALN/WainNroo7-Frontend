@@ -126,7 +126,7 @@ class Trivia extends Component {
                             }}
                             onPress={() => this.handleOnPress(ans.score)}
                           >
-                            <Text> {`${this.state.choice} ${ans.answer}`}</Text>
+                            <Text> {` ${ans.answer}`}</Text>
                           </Button>
                         </ListItem>
                       ))}
