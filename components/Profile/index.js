@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import { ImageBackground, Image } from "react-native";
-import { StyleSheet, Container, Dimensions, ScrollView } from "react-native";
-import { Block, Text, theme } from "galio-framework";
+import {
+  StyleSheet,
+  Container,
+  Dimensions,
+  ScrollView,
+  ImageBackground,
+  Image,
+  Text
+} from "react-native";
+import { Block, theme } from "galio-framework";
 import Logout from "../Logout/index";
 import { Spinner } from "native-base";
 
@@ -28,124 +35,103 @@ class ProfileScreen extends Component {
     if (profileStore.loading) return <Spinner />;
     {
       return (
-        <Container>
-          <ImageBackground sourece={require("../../assets/images/bg5.png")}>
-            <Block flex style={styles.profile}>
-              <Block flex>
-                <ScrollView
-                  showsVerticalScrollIndicator={false}
-                  style={{ width, marginTop: "25%" }}
-                >
-                  <Block flex style={styles.profileCard}>
-                    <Block middle style={styles.avatarContainer}>
-                      <Image
-                        source={
-                          profileStore.profile.gender == "Male"
-                            ? require("../../assets/avatars/avatar.png")
-                            : require("../../assets/avatars/avatar2.png")
-                        }
-                        style={styles.avatar}
-                      />
-                    </Block>
-                    <Block style={styles.info}></Block>
-                    <Block row space="between">
-                      <Block middle>
-                        <Text
-                          bold
-                          size={12}
-                          color="#525F7F"
-                          style={{ marginBottom: 4 }}
-                        ></Text>
-                        <Text size={12}></Text>
-                      </Block>
-                      <Block middle>
-                        <Text
-                          bold
-                          color="#525F7F"
-                          size={12}
-                          style={{ marginBottom: 4 }}
-                        ></Text>
-                        <Text size={40}>
-                          {profileStore.profile.user.username}
-                        </Text>
-                      </Block>
-                      <Block middle>
-                        <Text
-                          bold
-                          color="#525F7F"
-                          size={12}
-                          style={{ marginBottom: 4 }}
-                        ></Text>
-                        <Text size={12}></Text>
-                      </Block>
-                    </Block>
+        <Block flex style={styles.profile}>
+          <Block flex>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ width, marginTop: "25%" }}
+            >
+              <Block flex style={styles.profileCard}>
+                <Block middle style={styles.avatarContainer}>
+                  <Image
+                    source={
+                      profileStore.profile.gender == "Male"
+                        ? require("../../assets/avatars/avatar.png")
+                        : require("../../assets/avatars/avatar2.png")
+                    }
+                    style={styles.avatar}
+                  />
+                </Block>
+                <Block style={styles.info}></Block>
+                <Block row space="between">
+                  <Block middle>
+                    <Text
+                      bold
+                      size={12}
+                      color="#525F7F"
+                      style={{ marginBottom: 4 }}
+                    ></Text>
+                    <Text size={12}></Text>
                   </Block>
-                  <Block flex>
-                    <Block middle style={{ marginTop: 10, marginBottom: 16 }}>
+                  <Block middle>
+                    <Text
+                      bold
+                      color="#525F7F"
+                      size={12}
+                      style={{ marginBottom: 4 }}
+                    ></Text>
+                    <Text size={40}>{profileStore.profile.user.username}</Text>
+                  </Block>
+                  <Block middle>
+                    <Text
+                      bold
+                      color="#525F7F"
+                      size={12}
+                      style={{ marginBottom: 4 }}
+                    ></Text>
+                    <Text size={12}></Text>
+                  </Block>
+                </Block>
+              </Block>
+              <Block flex>
+                <Block middle style={{ marginTop: 10, marginBottom: 16 }}>
+                  <Block style={styles.divider} />
+                </Block>
+                <Block middle>
+                  <Block middle style={{ marginBottom: 16 }}>
+                    <Block style={styles.divider} />
+                  </Block>
+                  <Block middle style={styles.infoInfo}>
+                    <Text bold size={15} color="#32325D">
+                      First Name: {profileStore.profile.user.first_name}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
                       <Block style={styles.divider} />
                     </Block>
-                    <Block middle>
-                      <Block middle style={{ marginBottom: 16 }}>
-                        <Block style={styles.divider} />
-                      </Block>
-                      <Block middle style={styles.infoInfo}>
-                        <Text bold size={15} color="#32325D">
-                          First Name: {profileStore.profile.user.first_name}
-                        </Text>
-                        <Block
-                          middle
-                          style={{ marginTop: 30, marginBottom: 16 }}
-                        >
-                          <Block style={styles.divider} />
-                        </Block>
-                        <Text bold size={15} color="#32325D">
-                          Last Name: {profileStore.profile.user.last_name}
-                        </Text>
-                        <Block
-                          middle
-                          style={{ marginTop: 30, marginBottom: 16 }}
-                        >
-                          <Block style={styles.divider} />
-                        </Block>
-                        <Text bold size={15} color="#32325D">
-                          email: {profileStore.profile.user.email}
-                        </Text>
-                        <Block
-                          middle
-                          style={{ marginTop: 30, marginBottom: 16 }}
-                        >
-                          <Block style={styles.divider} />
-                        </Block>
-                        <Text bold size={15} color="#32325D">
-                          Date of birth: {profileStore.profile.birthday}
-                        </Text>
-                        <Block
-                          middle
-                          style={{ marginTop: 30, marginBottom: 16 }}
-                        >
-                          <Block style={styles.divider} />
-                        </Block>
-                        <Text bold size={15} color="#32325D">
-                          Score: {profileStore.profile.total_score}
-                        </Text>
-                        <Block
-                          middle
-                          style={{ marginTop: 30, marginBottom: 16 }}
-                        >
-                          <Block style={styles.divider} />
-                        </Block>
-                      </Block>
-                      <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                        <Block style={styles.divider} />
-                      </Block>
-                      <Logout style={styles.logout} />
+                    <Text bold size={15} color="#32325D">
+                      Last Name: {profileStore.profile.user.last_name}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Text bold size={15} color="#32325D">
+                      email: {profileStore.profile.user.email}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Text bold size={15} color="#32325D">
+                      Date of birth: {profileStore.profile.birthday}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
+                    </Block>
+                    <Text bold size={15} color="#32325D">
+                      Score: {profileStore.profile.total_score}
+                    </Text>
+                    <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                      <Block style={styles.divider} />
                     </Block>
                   </Block>
-                </ScrollView>
+                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
+                    <Block style={styles.divider} />
+                  </Block>
+                  <Logout style={styles.logout} />
+                </Block>
               </Block>
-            </Block>
-          </ImageBackground>
-        </Container>
+            </ScrollView>
+          </Block>
+        </Block>
       );
     }
   }

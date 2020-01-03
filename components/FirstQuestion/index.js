@@ -14,7 +14,7 @@ class FirstQuestion extends Component {
   state = {
     modalVisible: false,
     answer: "",
-    correctAnswer: "شارع الحب"
+    correctAnswer: "افنيوز"
   };
   toggleModal(visible) {
     this.setState({ modalVisible: visible });
@@ -58,7 +58,7 @@ class FirstQuestion extends Component {
             style={{ flex: 1, width: "100%", height: "100%" }}
           >
             <View style={styles.modal}>
-              <Text style={styles.text2}> شنو تسمون الدائري الثاني ؟</Text>
+              <Text style={styles.text2}> شنو اسم اكبر مجمع بالكويت ؟</Text>
               <Text />
               <TextInput
                 style={{

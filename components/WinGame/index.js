@@ -14,22 +14,17 @@ class WinGame extends Component {
           <Button
             rounded
             bordered
-            dark
+            light
             large
             onPress={() => this.props.navigation.navigate("List")}
             style={{
-              backgroundColor: "white",
-              alignSelf: "center",
               top: 600,
-              fontSize: 70,
-              textAlign: "center",
-              width: 100,
-              height: 50
+              fontSize: 50,
+              color: "white",
+              alignSelf: "center"
             }}
           >
-            <Text style={{ textAlign: "center", color: "green" }}>
-              Go Back !
-            </Text>
+            <Text style={{ color: "white" }}>Go Back !</Text>
           </Button>
         </ImageBackground>
       </Container>
